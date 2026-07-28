@@ -1,0 +1,16 @@
+{
+  "name": "flyers",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HTMLフライヤーの管理とPDF自動生成",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.js",
+    "build:index": "node scripts/build-index.js",
+    "build:pdf": "node scripts/build-pdf.js",
+    "build": "npm run build:index && npm run build:pdf && node scripts/build-site.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}

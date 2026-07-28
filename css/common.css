@@ -1,0 +1,66 @@
+/* すべてのフライヤーで共通の土台。個別の意匠は各フライヤーの style.css で組む。 */
+
+:root {
+  --sheet-width: 210mm;
+  --sheet-height: 297mm;
+  /* aspect-ratio は長さを受け付けないため、比は数値で別に持つ */
+  --sheet-ratio: 210 / 297;
+  --sheet-padding: 15mm;
+  --color-text: #1a1a1a;
+  --color-accent: #c0392b;
+  --font-sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  line-height: 1.6;
+  /* 印刷結果と画面表示の文字幅を揃える */
+  -webkit-text-size-adjust: none;
+  text-rendering: geometricPrecision;
+}
+
+/*
+ * 用紙1枚。複数ページのフライヤーは .sheet を必要な数だけ並べる。
+ * 内側の余白はフライヤーごとに事情が違う（全面レイアウトでは余白ゼロが要る）ため
+ * ここでは付けない。必要なら各 style.css で padding: var(--sheet-padding) を指定する。
+ */
+.sheet {
+  position: relative;
+  width: var(--sheet-width);
+  height: var(--sheet-height);
+  overflow: hidden;
+  background: #fff;
+  /* 内部を cqw（用紙幅に対する割合）で組めるようにする。
+     用紙サイズを変えてもレイアウトが崩れない書き方ができる。 */
+  container-type: inline-size;
+}
+
+.sheet img {
+  max-width: 100%;
+}
+
+/* --- 画面で見るときだけの装飾（PDFには出ない） --- */
+@media screen {
+  body {
+    background: #6b7280;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 16px;
+  }
+
+  .sheet {
+    box-shadow: 0 8px 32px rgb(0 0 0 / 35%);
+    /* 画面が用紙より狭いときは比を保ったまま縮める */
+    width: min(var(--sheet-width), 100%);
+    height: auto;
+    aspect-ratio: var(--sheet-ratio);
+  }
+}

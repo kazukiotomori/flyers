@@ -1,0 +1,51 @@
+/*
+ * 印刷・PDF出力の共通設定。
+ * build-pdf.js は preferCSSPageSize: true で動くため、
+ * 用紙サイズはこのファイル（と各フライヤーの上書き）が正となる。
+ * A3や横向きにしたいフライヤーは自身のHTML内で
+ *   @page { size: A3 landscape; }
+ * のように再宣言する。
+ */
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  body {
+    background: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+
+  .sheet {
+    box-shadow: none;
+    /* 画面用の縮小指定を打ち消し、用紙とぴったり同寸に保つ */
+    width: var(--sheet-width);
+    height: var(--sheet-height);
+    aspect-ratio: auto;
+    margin: 0;
+    /* 複数ページのフライヤーでは1枚ごとに改ページする。
+       最後の1枚で改ページすると空白ページが増えるので除外する。 */
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .sheet:last-of-type {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  /* 背景色・背景画像を確実に出す（printBackground と併用） */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* 画面用の補助表示は印刷しない */
+  .screen-only {
+    display: none !important;
+  }
+}

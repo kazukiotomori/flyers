@@ -1,0 +1,175 @@
+/*
+ * 迷子ICタグ 学校法人向け配布資料（全4ページ）専用のスタイル。
+ *
+ * 用紙の枠・改ページ・画面プレビューの縮小は css/common.css と css/print.css が持つ。
+ * ここには意匠だけを置く。
+ *
+ * レイアウト方式: .sheet を container-type: inline-size のコンテナとして、
+ * 中身を cqw（用紙幅に対する割合）と % で絶対配置する。
+ * 用紙サイズが変わっても全体が相似で拡縮する。
+ */
+
+:root {
+  color-scheme: light;
+  --teal: #0e7d74;
+  --teal2: #16877f;
+  --dark: #3f4145;
+  --black: #111;
+  --blue: #0756bf;
+  --num-blue: #0d4fb8;
+  --navy: #0b3970;
+  --orange: #f05a35;
+  --panel: #f1f6f4;
+  --line: #d9e8e2;
+}
+
+/* この資料は全面レイアウトなので用紙内側の余白は持たせない */
+.sheet {
+  padding: 0;
+}
+
+@media screen {
+  body {
+    background: #e9ecec;
+  }
+}
+
+/* --- 配置の基本要素 --- */
+
+.a {
+  position: absolute;
+}
+
+img.a {
+  height: auto;
+  user-select: none;
+}
+
+.t {
+  position: absolute;
+  z-index: 3;
+  margin: 0;
+  padding: 0;
+  color: var(--dark);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  white-space: normal;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+.t span {
+  color: inherit;
+}
+
+/* --- 文字色・字面 --- */
+
+.teal, .t .teal { color: var(--teal2); }
+.dark, .t .dark { color: var(--dark); }
+.black, .t .black { color: var(--black); }
+.blue, .t .blue { color: var(--blue); }
+.navy, .t .navy { color: var(--navy); }
+.orange, .t .orange { color: var(--orange); }
+.white { color: #fff; }
+
+.bold { font-weight: 700; }
+.heavy { font-weight: 800; }
+.display { font-weight: 900; letter-spacing: -0.03em; }
+
+.center { text-align: center; }
+.lh-tight { line-height: 1.18; }
+.lh-wide { line-height: 1.55; }
+.lh-body { line-height: 1.72; }
+
+.bullet { color: var(--teal2) !important; }
+
+/* 背景画像側に文字が焼き込まれている箇所で、選択・検索用にテキストだけ重ねる */
+.ghost,
+.t.ghost,
+.t.ghost span {
+  color: transparent !important;
+  text-shadow: none !important;
+}
+
+/* --- 部品 --- */
+
+.pill {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: var(--teal);
+}
+
+.stadium {
+  border-radius: 999px;
+}
+
+.bar {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  background: #077b72;
+}
+
+.card {
+  position: absolute;
+  z-index: 1;
+  background: #fff;
+  border: 1px solid #e4ede9;
+  border-radius: 1.3cqw;
+}
+
+.panelbox {
+  position: absolute;
+  z-index: 1;
+  background: var(--panel);
+  border-radius: 1.3cqw;
+}
+
+.dotline {
+  position: absolute;
+  z-index: 2;
+  border-top: 0.38cqw dotted var(--teal2);
+}
+
+.dashv {
+  position: absolute;
+  z-index: 2;
+  border-left: 0.22cqw dashed #bcd6cf;
+}
+
+.num {
+  position: absolute;
+  z-index: 2;
+  width: 3.6cqw;
+  height: 3.6cqw;
+  border-radius: 50%;
+  background: var(--num-blue);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 2.1cqw;
+}
+
+.tri {
+  position: absolute;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  border-top: 1.35cqw solid transparent;
+  border-bottom: 1.35cqw solid transparent;
+  border-left: 1.2cqw solid var(--num-blue);
+}

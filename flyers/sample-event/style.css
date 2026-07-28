@@ -1,0 +1,62 @@
+/*
+ * サンプルイベント2026 専用のスタイル。
+ * 共通の土台（.sheet の実寸レイアウトなど）は css/common.css 側にある。
+ * 寸法はmmで書くこと。画面プレビューがそのまま実寸になる。
+ */
+
+/* 用紙内側の余白。全面レイアウトのフライヤーもあるため共通CSS側では付けていない。 */
+.sheet {
+  padding: var(--sheet-padding);
+}
+
+.hero {
+  background: var(--color-accent);
+  color: #fff;
+  padding: 18mm 12mm;
+  margin: calc(var(--sheet-padding) * -1) calc(var(--sheet-padding) * -1) 12mm;
+}
+
+.hero__label {
+  margin: 0;
+  font-size: 4mm;
+  letter-spacing: 0.3em;
+}
+
+.hero__title {
+  margin: 4mm 0 0;
+  font-size: 14mm;
+  line-height: 1.15;
+}
+
+.lead {
+  font-size: 4.5mm;
+  margin: 0 0 10mm;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 22mm 1fr;
+  gap: 3mm 6mm;
+  font-size: 4mm;
+  margin: 0;
+}
+
+.details dt {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.details dd {
+  margin: 0;
+}
+
+.footer {
+  position: absolute;
+  left: var(--sheet-padding);
+  right: var(--sheet-padding);
+  bottom: var(--sheet-padding);
+  padding-top: 4mm;
+  border-top: 0.4mm solid #ddd;
+  font-size: 3.4mm;
+  color: #555;
+}

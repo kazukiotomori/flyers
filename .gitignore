@@ -1,0 +1,8 @@
+node_modules/
+dist/
+_site/
+
+# 現行版から参照されなくなった旧素材の置き場（数十MBの画像・PDFを含む）。
+# 手元には残すが、リポジトリには入れない。
+_archive/
+.DS_Store
