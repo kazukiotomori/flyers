@@ -15,6 +15,7 @@ HTMLフライヤーを管理し、Playwright でPDFを自動生成するリポ�
 - `scripts/build-pdf.js` — `flyers/` を走査して `dist/*.pdf` を生成
 - `scripts/build-index.js` — `index.html` を生成
 - `scripts/build-site.js` — Pages公開用に `_site/` を組み立て
+- `scripts/screenshot.js` — 各ページをPNGに書き出す（`npm run shot -- <slug>`）
 - `scripts/lib/` — フライヤー検出とビルド用静的サーバ
 
 ## 作業時の注意
@@ -42,4 +43,7 @@ HTMLフライヤーを管理し、Playwright でPDFを自動生成するリポ�
 - 出力ページ数が `flyer:pages` と違うと警告が出る。内容のはみ出しに気づくため。
 
 レイアウトを触ったときは、PDFのページ数が合っているだけでは不十分。
-実際の見た目が崩れていないかを目視で確認すること。
+`npm run shot -- <slug>` で変更前後のPNGを撮り、見た目が崩れていないか確認すること。
+用紙は overflow: hidden なので、はみ出した内容は警告もなく静かに消える。
+
+外部から持ち込んだフライヤーを取り込むときは、先に変更前のPNGを撮っておく。

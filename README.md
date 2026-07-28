@@ -78,6 +78,7 @@ dist/                    ← 生成されたPDF（コミットしない）
 | コマンド | 内容 |
 | --- | --- |
 | `npm run dev` | ローカルサーバを起動して画面確認する |
+| `npm run shot -- <slug>` | 1ページずつPNGに書き出す（`dist/preview/`）。変更前後の見比べ用。 |
 | `npm run build:index` | `index.html` を再生成する |
 | `npm run build:pdf` | `flyers/*.html` から `dist/*.pdf` を生成する |
 | `npm run build` | 上記すべて＋公開用の `_site/` を組み立てる |

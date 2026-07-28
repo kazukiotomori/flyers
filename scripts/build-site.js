@@ -17,6 +17,8 @@ for (const entry of ENTRIES) {
   await cp(path.join(ROOT, entry), path.join(SITE_DIR, entry), {
     recursive: true,
     force: true,
+    // dist/ には確認用のプレビュー画像も入るので、公開するのはPDFだけにする
+    filter: (src) => !src.split(path.sep).includes('preview'),
   }).catch((err) => {
     if (err.code !== 'ENOENT') throw err;
     console.warn(`skip: ${entry} が存在しません`);

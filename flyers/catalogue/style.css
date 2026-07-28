@@ -1,0 +1,334 @@
+/*
+ * 迷子・忘れ物解決システム / ICタグ 商品カタログ（全2ページ）専用のスタイル。
+ *
+ * 用紙の枠・改ページ・印刷時の色設定は css/common.css と css/print.css が持つ。
+ *
+ * 寸法は cqw で書いている。.sheet が container-type: inline-size なので、
+ * 画面が狭くて用紙を縮小表示するときも中身が一緒に縮み、
+ * 印刷結果と同じ見た目のまま確認できる。
+ *
+ * 基準は用紙幅ではなく .sheet のコンテンツボックス幅（左右の余白 9mm を
+ * 除いた 192mm）。1cqw = 1.92mm にあたる。
+ */
+
+:root {
+  --ink: #1e2b3c;
+  --pink: #f3638c;
+  --pink-light: #ffeaf1;
+  --blue: #2486cb;
+  --blue-light: #edf7ff;
+  --teal: #43b9b7;
+  --green: #52b788;
+  --orange: #f2994a;
+  --purple: #8e75cc;
+  --yellow: #d7bb3f;
+  --line: #d8e2ea;
+}
+
+body {
+  color: var(--ink);
+}
+
+.sheet {
+  padding: 10mm 9mm 9mm;
+}
+
+/* --- 画面での見開き表示 --- */
+
+/*
+ * 既定では共通CSSに任せて1ページずつ縦に積む（狭い画面でも読める）。
+ * 用紙2枚を並べられる幅があるときだけ見開きにする。
+ */
+@media screen {
+  body {
+    background: #eef2f5;
+  }
+
+  /* .spread を透過させ、各ページを body の縦並びに参加させる */
+  .spread {
+    display: contents;
+  }
+}
+
+@media screen and (min-width: 1650px) {
+  .spread {
+    display: flex;
+    gap: 2mm;
+    align-items: flex-start;
+  }
+
+  .spread .sheet {
+    /* 見開きでは縮小せず実寸で並べる */
+    width: var(--sheet-width);
+    height: var(--sheet-height);
+    aspect-ratio: auto;
+    flex: 0 0 auto;
+  }
+
+  /* 見開きの綴じ目 */
+  .sheet + .sheet {
+    border-left: 0.138cqw solid #b7c0c9;
+  }
+}
+
+/* --- 見出し --- */
+
+h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 3.308cqw;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  font-weight: 900;
+  color: #111;
+}
+
+.subhead {
+  position: relative;
+  text-align: center;
+  margin: 1.103cqw 0 1.654cqw;
+  padding-bottom: 1.24cqw;
+  font-size: 3.859cqw;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.subhead::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  border-bottom: 0.551cqw dotted currentColor;
+  opacity: 0.75;
+}
+
+.subhead.pink { color: var(--pink); }
+.subhead.blue { color: var(--blue); }
+
+/* --- 1ページ目: 商品ラインナップ --- */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.965cqw;
+  /* 見出し2行ぶんを差し引いた残り全部 */
+  height: calc(100% - 11.851cqw);
+}
+
+.product-card {
+  border: 0.221cqw solid #f5b8ca;
+  border-radius: 1.654cqw;
+  padding: 1.103cqw 1.24cqw;
+  position: relative;
+  background: #fff;
+  min-height: 0;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 1.103cqw;
+  margin: 0 0 0.965cqw;
+  font-size: 2.205cqw;
+  font-weight: 900;
+  line-height: 1.2;
+  color: #111;
+}
+
+.num {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 4.134cqw;
+  height: 4.134cqw;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 2.067cqw;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.n-pink { background: var(--pink); }
+.n-teal { background: #43b8ac; }
+.n-blue { background: #629be0; }
+.n-orange { background: #f49a56; }
+.n-purple { background: #9e81ca; }
+.n-yellow { background: #d1b642; }
+
+.prod-img {
+  width: 100%;
+  height: 38%;
+  border-radius: 0.551cqw;
+  object-fit: cover;
+  display: block;
+  background: #f6f6f6;
+  margin-bottom: 1.103cqw;
+}
+
+.label {
+  color: #e86880;
+  font-weight: 900;
+  margin: 0.413cqw 0 0.276cqw;
+  font-size: 1.654cqw;
+}
+
+ul {
+  margin: 0;
+  padding-left: 2.205cqw;
+  font-size: 1.571cqw;
+  line-height: 1.47;
+  font-weight: 600;
+}
+
+.note-bottom {
+  position: absolute;
+  bottom: 8mm;
+  left: 9mm;
+  right: 9mm;
+  text-align: center;
+  font-size: 1.516cqw;
+  font-weight: 700;
+}
+
+/* --- 2ページ目: 活用パターン --- */
+
+.pattern-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.103cqw;
+  margin-top: 1.378cqw;
+  /* 見出しと、下端の注釈・問い合わせ欄のぶんを除いた残り */
+  height: calc(100% - 28.27cqw);
+}
+
+.pattern-card {
+  display: grid;
+  grid-template-columns: 52% 48%;
+  /*
+   * 4枚で高さを等分する。画像の縦横比に任せると、差し替えた画像しだいで
+   * カードが伸びてページから溢れる（用紙外は overflow: hidden で隠れるため、
+   * PDFのページ数では気づけない）。
+   */
+  flex: 1 1 0;
+  min-height: 0;
+  border: 0.248cqw solid #9bcbee;
+  border-radius: 1.516cqw;
+  overflow: hidden;
+  background: linear-gradient(90deg, #fff 0%, #fff 51%, #eff9ff 52%, #f8fcff 100%);
+}
+
+/* カードの高さいっぱいに敷き、はみ出す分は中央基準で切り取る */
+.pattern-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pattern-text {
+  padding: 1.378cqw 1.654cqw 1.103cqw;
+  display: grid;
+  grid-template-columns: 5.788cqw 1fr;
+  column-gap: 1.103cqw;
+  align-items: start;
+  /*
+   * 既定では行がカードの高さいっぱいに引き伸ばされ、本文が下端に
+   * 押し出されてカードから溢れる。見出しと本文は上に寄せる。
+   */
+  align-content: start;
+}
+
+.pattern-icon {
+  width: 5.237cqw;
+  height: 5.237cqw;
+  border-radius: 50%;
+  background: var(--blue);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 3.032cqw;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.pattern-title {
+  margin: 0.138cqw 0 1.103cqw;
+  color: var(--blue);
+  font-weight: 900;
+  font-size: 3.308cqw;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+}
+
+.pattern-card ul {
+  grid-column: 2/3;
+  font-size: 1.764cqw;
+  line-height: 1.58;
+  font-weight: 700;
+}
+
+.p2-footnote {
+  font-size: 1.516cqw;
+  font-weight: 700;
+  margin-top: 1.103cqw;
+}
+
+/* --- 問い合わせ先（2ページ目の下端） --- */
+
+.contact {
+  position: absolute;
+  bottom: 8mm;
+  left: 9mm;
+  right: 9mm;
+  display: grid;
+  grid-template-columns: 32.384cqw 1fr 20.671cqw;
+  border: 0.276cqw solid #3bb8b0;
+  border-radius: 0.827cqw;
+  overflow: hidden;
+  /* 社名・担当者・メールアドレスの3行が入る高さ */
+  height: 10.4cqw;
+  background: #fff;
+}
+
+.contact .cta {
+  background: #35b6b1;
+  color: #fff;
+  font-weight: 900;
+  font-size: 2.343cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.04em;
+}
+
+.contact .info {
+  padding: 1.103cqw 1.929cqw;
+  font-size: 1.929cqw;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.contact .brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4.134cqw;
+  font-weight: 900;
+  color: #142b4c;
+  letter-spacing: 0.02em;
+}
+
+.logo-mark {
+  font-size: 0.55em;
+  vertical-align: super;
+  margin-left: 0.138cqw;
+}
+
+.decor {
+  position: absolute;
+  width: 2.205cqw;
+  height: 2.205cqw;
+  opacity: 0.6;
+}

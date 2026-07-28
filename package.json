@@ -8,6 +8,7 @@
     "dev": "node scripts/serve.js",
     "build:index": "node scripts/build-index.js",
     "build:pdf": "node scripts/build-pdf.js",
+    "shot": "node scripts/screenshot.js",
     "build": "npm run build:index && npm run build:pdf && node scripts/build-site.js"
   },
   "devDependencies": {
