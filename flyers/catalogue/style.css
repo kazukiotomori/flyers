@@ -1,4 +1,10 @@
 /*
+ * 本文フォント。角の丸いゴシック体で、温かみを出しつつ字面は素直に保つ。
+ * @import は他のルールより前に置く必要がある（CSSの規定）。
+ */
+@import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap");
+
+/*
  * 迷子・忘れ物解決システム / ICタグ 商品カタログ（全2ページ）専用のスタイル。
  *
  * 用紙の枠・改ページ・印刷時の色設定は css/common.css と css/print.css が持つ。
@@ -27,6 +33,8 @@
 
 body {
   color: var(--ink);
+  /* 読み込みに失敗しても共通CSSのゴシック体に落ちる */
+  font-family: "Zen Maru Gothic", var(--font-sans);
 }
 
 .sheet {
@@ -112,9 +120,11 @@ h1 {
 .product-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  /* 3行を等分する。行の高さが揃わないと写真枠の高さも揃わない */
+  grid-template-rows: repeat(3, 1fr);
   gap: 0.965cqw;
-  /* 見出し2行ぶんを差し引いた残り全部 */
-  height: calc(100% - 11.851cqw);
+  /* 見出し2行ぶんと、枠の下に置く注記のぶんを差し引いた残り全部 */
+  height: calc(100% - 11.851cqw - 3.6cqw);
 }
 
 .product-card {
@@ -124,13 +134,17 @@ h1 {
   position: relative;
   background: #fff;
   min-height: 0;
+  /* 画像→見出し→本文を縦に積む。本文は残りいっぱいを使う */
+  display: flex;
+  flex-direction: column;
 }
 
 .card-title {
   display: flex;
   align-items: center;
   gap: 1.103cqw;
-  margin: 0 0 0.965cqw;
+  flex: 0 0 auto;
+  margin: 0 0 0.827cqw;
   font-size: 2.205cqw;
   font-weight: 900;
   line-height: 1.2;
@@ -157,38 +171,51 @@ h1 {
 .n-purple { background: #9e81ca; }
 .n-yellow { background: #d1b642; }
 
+/*
+ * 商品写真。画像は枠と同じ縦横比まで背景色で余白を足してあるので、
+ * cover でも商品が切れずに枠いっぱいに収まる。
+ */
 .prod-img {
   width: 100%;
   height: 38%;
+  flex: 0 0 auto;
   border-radius: 0.551cqw;
   object-fit: cover;
   display: block;
   background: #f6f6f6;
-  margin-bottom: 1.103cqw;
+  margin-bottom: 0.827cqw;
 }
 
 .label {
   color: #e86880;
   font-weight: 900;
-  margin: 0.413cqw 0 0.276cqw;
-  font-size: 1.654cqw;
+  margin: 0.276cqw 0 0.413cqw;
+  font-size: 1.929cqw;
 }
 
 ul {
   margin: 0;
   padding-left: 2.205cqw;
-  font-size: 1.571cqw;
-  line-height: 1.47;
+  font-size: 1.792cqw;
+  line-height: 1.52;
   font-weight: 600;
 }
 
+/* 商品枠のなかの但し書き。本文より一段小さく、枠の下端に寄せる */
+.caution {
+  margin: auto 0 0;
+  padding-top: 0.551cqw;
+  font-size: 1.379cqw;
+  line-height: 1.35;
+  font-weight: 600;
+  color: #6b7785;
+}
+
+/* 商品枠と重ならないよう、枠の下に流し込む */
 .note-bottom {
-  position: absolute;
-  bottom: 8mm;
-  left: 9mm;
-  right: 9mm;
+  margin-top: 1.24cqw;
   text-align: center;
-  font-size: 1.516cqw;
+  font-size: 1.792cqw;
   font-weight: 700;
 }
 
@@ -205,7 +232,7 @@ ul {
 
 .pattern-card {
   display: grid;
-  grid-template-columns: 52% 48%;
+  grid-template-columns: 44% 56%;
   /*
    * 4枚で高さを等分する。画像の縦横比に任せると、差し替えた画像しだいで
    * カードが伸びてページから溢れる（用紙外は overflow: hidden で隠れるため、
@@ -216,13 +243,20 @@ ul {
   border: 0.248cqw solid #9bcbee;
   border-radius: 1.516cqw;
   overflow: hidden;
-  background: linear-gradient(90deg, #fff 0%, #fff 51%, #eff9ff 52%, #f8fcff 100%);
+  background: linear-gradient(90deg, #fff 0%, #fff 43%, #eff9ff 44%, #f8fcff 100%);
 }
 
-/* カードの高さいっぱいに敷き、はみ出す分は中央基準で切り取る */
+/*
+ * カードの高さいっぱいに敷き、はみ出す分は中央基準で切り取る。
+ * min-height/min-width を 0 にしないと、グリッド項目の自動最小サイズ
+ * （画像の縦横比から決まる高さ）が効いてカードより背が高いまま置かれ、
+ * 下端が黙って切り落とされる。
+ */
 .pattern-card img {
   width: 100%;
   height: 100%;
+  min-width: 0;
+  min-height: 0;
   object-fit: cover;
   display: block;
 }
@@ -264,13 +298,13 @@ ul {
 
 .pattern-card ul {
   grid-column: 2/3;
-  font-size: 1.764cqw;
-  line-height: 1.58;
+  font-size: 1.929cqw;
+  line-height: 1.55;
   font-weight: 700;
 }
 
 .p2-footnote {
-  font-size: 1.516cqw;
+  font-size: 1.654cqw;
   font-weight: 700;
   margin-top: 1.103cqw;
 }
@@ -318,12 +352,6 @@ ul {
   font-weight: 900;
   color: #142b4c;
   letter-spacing: 0.02em;
-}
-
-.logo-mark {
-  font-size: 0.55em;
-  vertical-align: super;
-  margin-left: 0.138cqw;
 }
 
 .decor {
