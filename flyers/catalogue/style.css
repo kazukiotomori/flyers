@@ -17,18 +17,22 @@
  * 除いた 192mm）。1cqw = 1.92mm にあたる。
  */
 
+/*
+ * 色は css/common.css のブランドカラーを割り当てる。ここでは
+ * 「このカタログのどこに使うか」だけを決める。
+ *
+ * 商品カードは6枚あるが、色はブランドの3色を順に回している。
+ * カードを見分けられる程度の差はつけつつ、パレットの外には出さない。
+ */
 :root {
+  --teal: var(--brand-teal);
+  --blue: var(--brand-blue);
+  --orange: var(--brand-orange);
+  /* 本文の地の色。ブランドカラーではないので固定 */
   --ink: #1e2b3c;
-  --pink: #f3638c;
-  --pink-light: #ffeaf1;
-  --blue: #2486cb;
-  --blue-light: #edf7ff;
-  --teal: #43b9b7;
-  --green: #52b788;
-  --orange: #f2994a;
-  --purple: #8e75cc;
-  --yellow: #d7bb3f;
-  --line: #d8e2ea;
+  /* 枠線は各ブランドカラーを白で薄めたもの */
+  --teal-line: #bad4d2;
+  --blue-line: #b8c2f0;
 }
 
 body {
@@ -49,7 +53,7 @@ body {
  */
 @media screen {
   body {
-    background: #eef2f5;
+    background: var(--base-gray);
   }
 
   /* .spread を透過させ、各ページを body の縦並びに参加させる */
@@ -112,7 +116,7 @@ h1 {
   opacity: 0.75;
 }
 
-.subhead.pink { color: var(--pink); }
+.subhead.teal { color: var(--teal); }
 .subhead.blue { color: var(--blue); }
 
 /* --- 1ページ目: 商品ラインナップ --- */
@@ -128,7 +132,7 @@ h1 {
 }
 
 .product-card {
-  border: 0.221cqw solid #f5b8ca;
+  border: 0.221cqw solid var(--teal-line);
   border-radius: 1.654cqw;
   padding: 1.103cqw 1.24cqw;
   position: relative;
@@ -164,12 +168,9 @@ h1 {
   letter-spacing: 0.02em;
 }
 
-.n-pink { background: var(--pink); }
-.n-teal { background: #43b8ac; }
-.n-blue { background: #629be0; }
-.n-orange { background: #f49a56; }
-.n-purple { background: #9e81ca; }
-.n-yellow { background: #d1b642; }
+.n-teal { background: var(--teal); }
+.n-blue { background: var(--blue); }
+.n-orange { background: var(--orange); }
 
 /*
  * 商品写真。画像は枠と同じ縦横比まで背景色で余白を足してあるので、
@@ -182,16 +183,20 @@ h1 {
   border-radius: 0.551cqw;
   object-fit: cover;
   display: block;
-  background: #f6f6f6;
+  background: var(--base-gray);
   margin-bottom: 0.827cqw;
 }
 
+/* 既定はティール。カードごとにブランドの3色を回す */
 .label {
-  color: #e86880;
+  color: var(--teal);
   font-weight: 900;
   margin: 0.276cqw 0 0.413cqw;
   font-size: 1.929cqw;
 }
+
+.label.blue { color: var(--blue); }
+.label.orange { color: var(--orange); }
 
 ul {
   margin: 0;
@@ -240,10 +245,10 @@ ul {
    */
   flex: 1 1 0;
   min-height: 0;
-  border: 0.248cqw solid #9bcbee;
+  border: 0.248cqw solid var(--blue-line);
   border-radius: 1.516cqw;
   overflow: hidden;
-  background: linear-gradient(90deg, #fff 0%, #fff 43%, #eff9ff 44%, #f8fcff 100%);
+  background: linear-gradient(90deg, #fff 0%, #fff 43%, #eef1fc 44%, #f8faff 100%);
 }
 
 /*
@@ -318,7 +323,7 @@ ul {
   right: 9mm;
   display: grid;
   grid-template-columns: 32.384cqw 1fr 20.671cqw;
-  border: 0.276cqw solid #3bb8b0;
+  border: 0.276cqw solid var(--teal);
   border-radius: 0.827cqw;
   overflow: hidden;
   /* 社名・担当者・メールアドレスの3行が入る高さ */
@@ -327,7 +332,7 @@ ul {
 }
 
 .contact .cta {
-  background: #35b6b1;
+  background: var(--teal);
   color: #fff;
   font-weight: 900;
   font-size: 2.343cqw;
@@ -350,7 +355,7 @@ ul {
   justify-content: center;
   font-size: 4.134cqw;
   font-weight: 900;
-  color: #142b4c;
+  color: var(--ink);
   letter-spacing: 0.02em;
 }
 
