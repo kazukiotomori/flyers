@@ -1,0 +1,234 @@
+/*
+ * デザイン案A「レターヘッド型」。
+ *
+ * 教育委員会や園長先生の机に置かれる書類として見たときに、いちばん
+ * 迷いなく読める形を狙っている。写真とイラストは使わず、罫線・余白・
+ * 線画だけで組む。色は css/common.css のブランドカラーだけを使い、
+ * オレンジは「ここだけ」という一点に絞る。
+ *
+ * 寸法は用紙まわりが mm、用紙幅に対する相対値が cqw
+ * （.sheet が container-type: inline-size。1cqw = 2.1mm）。
+ */
+
+:root {
+  --ink: #2a2f33;
+  --muted: #5c6569;
+  --hairline: #cfe0d4;
+}
+
+.sheet {
+  padding: 20mm 18mm 18mm;
+  display: flex;
+  flex-direction: column;
+  /*
+   * 余りを1か所に溜めず、節の間に均等に配らせる。
+   * 文章量が変わっても段組みの呼吸が保たれる。
+   */
+  justify-content: space-between;
+  color: var(--ink);
+}
+
+/* --- 差出人を名乗る一行 --- */
+
+.masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 1.4cqw;
+  border-bottom: 0.14cqw solid var(--brand-teal);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 1.9cqw;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--brand-teal);
+}
+
+.product {
+  margin: 0;
+  font-size: 1.5cqw;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+/* --- 見出しと線画 --- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 28%;
+  align-items: center;
+  column-gap: 2.5cqw;
+  margin-top: 2cqw;
+}
+
+.headline {
+  margin: 0;
+  font-size: 7.4cqw;
+  font-weight: 900;
+  line-height: 1.36;
+  letter-spacing: 0.01em;
+}
+
+/* 「安心」だけを色と大きさで立てる。ここが紙面の焦点 */
+.headline em {
+  font-style: normal;
+  font-size: 1.42em;
+  color: var(--brand-teal);
+  letter-spacing: -0.02em;
+  margin-right: 0.06em;
+}
+
+.lead {
+  margin: 3.6cqw 0 0;
+  font-size: 2.45cqw;
+  font-weight: 700;
+  line-height: 1.75;
+  color: var(--brand-teal);
+}
+
+.hero__art {
+  margin: 0;
+}
+
+.hero__art svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 線画の描き分け。塗りは淡いベースグリーン、線はティール、一点だけオレンジ */
+.art-plate { fill: var(--base-green); }
+.art-fill { fill: var(--base-green); }
+.art-line {
+  fill: none;
+  stroke: var(--brand-teal);
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.art-accent { fill: var(--brand-orange); }
+.art-accent-line {
+  fill: none;
+  stroke: var(--brand-orange);
+  stroke-width: 3.4;
+  stroke-linecap: round;
+}
+.art-mark {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --- 本文 --- */
+
+.body {
+  padding-top: 3.4cqw;
+  border-top: 0.1cqw solid var(--hairline);
+}
+
+.body p {
+  margin: 0;
+  font-size: 2.0cqw;
+  font-weight: 500;
+  line-height: 1.95;
+  color: var(--muted);
+}
+
+.body p + p {
+  margin-top: 1.8cqw;
+}
+
+/* --- 3ステップ --- */
+
+.flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4cqw;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow__step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 1.6cqw;
+  align-items: center;
+  padding: 3.2cqw 2.4cqw;
+  border-radius: 1.2cqw;
+  background: var(--base-green);
+}
+
+.flow__num {
+  grid-column: 1 / -1;
+  font-size: 1.7cqw;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: var(--brand-orange);
+}
+
+.flow__icon {
+  width: 10cqw;
+  height: 10cqw;
+  margin-top: 1.4cqw;
+}
+
+.flow__label {
+  margin-top: 1.4cqw;
+  font-size: 2.2cqw;
+  font-weight: 800;
+  color: var(--brand-teal);
+}
+
+/* --- 下端の使いどころ一覧 --- */
+
+.uses {
+  padding-top: 1cqw;
+}
+
+.uses__title {
+  margin: 0 0 2.2cqw;
+  font-size: 2.35cqw;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.uses__title::before,
+.uses__title::after {
+  content: "／";
+  color: var(--brand-teal);
+  margin: 0 0.4em;
+  font-weight: 700;
+}
+
+.uses__title::before {
+  content: "＼";
+}
+
+.uses__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 0.1cqw solid var(--hairline);
+  border-left: 0.1cqw solid var(--hairline);
+}
+
+.uses__list li {
+  padding: 2.2cqw 1.4cqw;
+  border-right: 0.1cqw solid var(--hairline);
+  border-bottom: 0.1cqw solid var(--hairline);
+  font-size: 1.8cqw;
+  font-weight: 700;
+  color: var(--brand-blue);
+  text-align: center;
+}

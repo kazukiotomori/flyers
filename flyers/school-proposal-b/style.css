@@ -1,0 +1,242 @@
+/*
+ * デザイン案B「掲示物型」。
+ *
+ * 職員室の壁や保護者への配布物として、離れて見ても何の紙か分かる形を狙う。
+ * 淡いグリーンの地に白いカードを1枚浮かせ、角はすべて丸める。
+ * 写真は使わず、平面のイラストで置き換える。
+ * 色は css/common.css のブランドカラーだけ。
+ *
+ * 寸法は用紙まわりが mm、用紙幅に対する相対値が cqw
+ * （.sheet が container-type: inline-size。1cqw = 2.1mm）。
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap");
+
+:root {
+  --ink: #24292c;
+  --muted: #59636a;
+}
+
+.sheet {
+  padding: 8mm;
+  background: var(--base-green);
+  font-family: "Zen Maru Gothic", var(--font-sans);
+  color: var(--ink);
+}
+
+.card {
+  height: 100%;
+  padding: 7cqw 6cqw 0;
+  background: #fff;
+  border-radius: 4cqw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* 余りを節の間に均等に配る */
+  justify-content: space-between;
+}
+
+/* --- 名乗り --- */
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chip {
+  margin: 0;
+  padding: 0.9cqw 2.2cqw;
+  border-radius: 999px;
+  background: var(--brand-orange);
+  color: #fff;
+  font-size: 1.85cqw;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.product {
+  margin: 0;
+  font-size: 1.55cqw;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+/* --- 見出しとイラスト --- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 40%;
+  align-items: center;
+  column-gap: 3cqw;
+}
+
+.headline {
+  margin: 0;
+  font-size: 6.6cqw;
+  font-weight: 900;
+  line-height: 1.44;
+  letter-spacing: 0.01em;
+}
+
+/* 「安心」はティールの面に白抜き。遠目でもここだけ拾える */
+.headline em {
+  display: inline-block;
+  font-style: normal;
+  padding: 0 0.16em;
+  border-radius: 0.18em;
+  background: var(--brand-teal);
+  color: #fff;
+}
+
+.lead {
+  margin: 2.6cqw 0 0;
+  font-size: 2.1cqw;
+  font-weight: 700;
+  line-height: 1.7;
+  color: var(--brand-teal);
+}
+
+.scene {
+  margin: 0;
+}
+
+.scene svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* イラストの色。ベースグリーン → ティール → 一点だけオレンジ、の3段 */
+.sky { fill: var(--base-green); }
+.ground { fill: #cfe0d4; }
+.bldg { fill: #fff; stroke: var(--brand-teal); stroke-width: 3; }
+.bldg-roof { fill: var(--brand-teal); }
+.bldg-clock { fill: #fff; }
+.win rect { fill: #cfe0d4; }
+.bldg-door { fill: #cfe0d4; }
+.kid-head { fill: #f0d6bf; }
+.leg { fill: #fff; }
+.bag-a { fill: var(--brand-blue); }
+.bag-b { fill: var(--brand-teal); }
+.strap-a { stroke: var(--brand-blue); stroke-width: 6; stroke-linecap: round; fill: none; }
+.strap-b { stroke: var(--brand-teal); stroke-width: 6; stroke-linecap: round; fill: none; }
+.tag-cord { stroke: var(--brand-teal); stroke-width: 3.5; stroke-linecap: round; fill: none; }
+.tag-ring { fill: none; stroke: var(--brand-teal); stroke-width: 3.5; }
+.tag-disc { fill: var(--brand-orange); }
+.tag-mark { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+/* --- 本文 --- */
+
+.body {
+  margin: 0;
+  font-size: 1.95cqw;
+  font-weight: 500;
+  line-height: 1.95;
+  color: var(--muted);
+}
+
+/* --- 3ステップ --- */
+
+.flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4cqw;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4cqw;
+}
+
+.flow__disc {
+  display: grid;
+  place-items: center;
+  width: 15cqw;
+  height: 15cqw;
+  border-radius: 50%;
+  background: var(--base-green);
+}
+
+.flow__disc svg {
+  width: 55%;
+  height: 55%;
+}
+
+.ln {
+  fill: none;
+  stroke: var(--brand-teal);
+  stroke-width: 3.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ln-accent {
+  fill: none;
+  stroke: var(--brand-orange);
+  stroke-width: 3.4;
+  stroke-linecap: round;
+}
+
+.dot { fill: var(--brand-orange); }
+
+.flow__label {
+  font-size: 2.05cqw;
+  font-weight: 700;
+  color: var(--brand-teal);
+}
+
+/* 手前のステップから次へ送る矢羽根 */
+.flow__arrow {
+  width: 0;
+  height: 0;
+  border-top: 1.5cqw solid transparent;
+  border-bottom: 1.5cqw solid transparent;
+  border-left: 1.8cqw solid var(--brand-orange);
+  margin-bottom: 3.4cqw;
+}
+
+/* --- 下端 --- */
+
+.uses {
+  /* カードの左右いっぱいまで帯を伸ばす */
+  margin: 0 -6cqw;
+}
+
+.uses__band {
+  margin: 0;
+  padding: 1.9cqw 0;
+  background: var(--brand-teal);
+  color: #fff;
+  text-align: center;
+  font-size: 2.25cqw;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.uses__chips {
+  /* 4つずつ2段。折り返し任せだと5つ+3つになって重心がずれる */
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: center;
+  gap: 1.4cqw;
+  margin: 0;
+  padding: 2.6cqw 6cqw 3cqw;
+  list-style: none;
+}
+
+.uses__chips li {
+  padding: 0.9cqw 2cqw;
+  border: 0.14cqw solid var(--brand-blue);
+  border-radius: 999px;
+  font-size: 1.7cqw;
+  font-weight: 700;
+  color: var(--brand-blue);
+}
