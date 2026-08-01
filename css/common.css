@@ -6,8 +6,21 @@
   /* aspect-ratio は長さを受け付けないため、比は数値で別に持つ */
   --sheet-ratio: 210 / 297;
   --sheet-padding: 15mm;
+  /*
+   * ブランドカラー。全フライヤー共通の出どころはここ。
+   * 各フライヤーの style.css は、この値を自分の意味づけ（見出し色など）に
+   * 割り当てて使う。色を変えるときはまずここを見る。
+   */
+  --brand-teal: #39837f;
+  --brand-blue: #1135ce;
+  --brand-orange: #f07741;
+  --brand-orange-light: #f5a73d;
+  --base-white: #ffffff;
+  --base-green: #e5efe7;
+  --base-gray: #efefef;
+
   --color-text: #1a1a1a;
-  --color-accent: #c0392b;
+  --color-accent: var(--brand-orange);
   --font-sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
 }
 

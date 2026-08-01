@@ -9,18 +9,21 @@
  * 用紙サイズが変わっても全体が相似で拡縮する。
  */
 
+/*
+ * 色は css/common.css のブランドカラーを割り当てる。ここでは
+ * 「この資料のどこに使うか」だけを決める。
+ */
 :root {
   color-scheme: light;
-  --teal: #0e7d74;
-  --teal2: #16877f;
+  --teal: var(--brand-teal);
+  --blue: var(--brand-blue);
+  --orange: var(--brand-orange);
+  --panel: var(--base-green);
+  /* 本文と見出しの地の色。ブランドカラーではないので固定 */
   --dark: #3f4145;
   --black: #111;
-  --blue: #0756bf;
-  --num-blue: #0d4fb8;
-  --navy: #0b3970;
-  --orange: #f05a35;
-  --panel: #f1f6f4;
-  --line: #d9e8e2;
+  /* 枠線はベースの淡いグリーンを少し締めた色 */
+  --line: #cfe0d4;
 }
 
 /* この資料は全面レイアウトなので用紙内側の余白は持たせない */
@@ -30,7 +33,7 @@
 
 @media screen {
   body {
-    background: #e9ecec;
+    background: var(--base-gray);
   }
 }
 
@@ -65,11 +68,10 @@ img.a {
 
 /* --- 文字色・字面 --- */
 
-.teal, .t .teal { color: var(--teal2); }
+.teal, .t .teal { color: var(--teal); }
 .dark, .t .dark { color: var(--dark); }
 .black, .t .black { color: var(--black); }
 .blue, .t .blue { color: var(--blue); }
-.navy, .t .navy { color: var(--navy); }
 .orange, .t .orange { color: var(--orange); }
 .white { color: #fff; }
 
@@ -82,7 +84,7 @@ img.a {
 .lh-wide { line-height: 1.55; }
 .lh-body { line-height: 1.72; }
 
-.bullet { color: var(--teal2) !important; }
+.bullet { color: var(--teal) !important; }
 
 /* 背景画像側に文字が焼き込まれている箇所で、選択・検索用にテキストだけ重ねる */
 .ghost,
@@ -119,7 +121,7 @@ img.a {
   color: #fff;
   font-weight: 800;
   letter-spacing: 0.2em;
-  background: #077b72;
+  background: var(--teal);
 }
 
 .card {
@@ -140,7 +142,7 @@ img.a {
 .dotline {
   position: absolute;
   z-index: 2;
-  border-top: 0.38cqw dotted var(--teal2);
+  border-top: 0.38cqw dotted var(--teal);
 }
 
 .dashv {
@@ -155,7 +157,7 @@ img.a {
   width: 3.6cqw;
   height: 3.6cqw;
   border-radius: 50%;
-  background: var(--num-blue);
+  background: var(--blue);
   color: #fff;
   display: flex;
   align-items: center;
@@ -171,5 +173,5 @@ img.a {
   height: 0;
   border-top: 1.35cqw solid transparent;
   border-bottom: 1.35cqw solid transparent;
-  border-left: 1.2cqw solid var(--num-blue);
+  border-left: 1.2cqw solid var(--blue);
 }
