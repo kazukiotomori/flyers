@@ -322,7 +322,8 @@ ul {
   left: 9mm;
   right: 9mm;
   display: grid;
-  grid-template-columns: 32.384cqw 1fr 20.671cqw;
+  /* 右端はロゴのぶんだけ広げてある */
+  grid-template-columns: 32.384cqw 1fr 27cqw;
   border: 0.276cqw solid var(--teal);
   border-radius: 0.827cqw;
   overflow: hidden;
@@ -353,10 +354,18 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1.1cqw;
   font-size: 4.134cqw;
   font-weight: 900;
   color: var(--ink);
   letter-spacing: 0.02em;
+}
+
+/* 枠の高さに収める。文字とロゴの天地の中心が揃うようにしている */
+.brand-logo {
+  height: 6.6cqw;
+  width: auto;
+  flex: 0 0 auto;
 }
 
 .decor {
