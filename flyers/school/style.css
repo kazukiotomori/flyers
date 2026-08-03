@@ -48,6 +48,15 @@ img.a {
   user-select: none;
 }
 
+/*
+ * 1ページ目の写真。紙の途中で左端が切れると断ち切り線が目立つので、
+ * 左を白へ溶かす。用紙は白なので、透過させれば白に消える。
+ */
+.hero-photo {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 13%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 13%);
+}
+
 .t {
   position: absolute;
   z-index: 3;
