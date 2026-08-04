@@ -51,10 +51,13 @@ img.a {
 /*
  * 1ページ目の写真。紙の途中で左端が切れると断ち切り線が目立つので、
  * 左を白へ溶かす。用紙は白なので、透過させれば白に消える。
+ *
+ * 溶かし切る位置は、写真のICタグが写り始める手前（画像の左から15%）。
+ * ここより左は石畳と校舎だけなので、タグとランドセルはぼやけない。
  */
 .hero-photo {
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 13%);
-  mask-image: linear-gradient(to right, transparent 0%, #000 13%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 15%);
 }
 
 .t {
