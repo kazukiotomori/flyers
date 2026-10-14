@@ -15,6 +15,10 @@
   --brand-blue: #1135ce;
   --brand-orange: #f07741;
   --brand-orange-light: #f5a73d;
+  /* SoundForest のロゴの2色（images/logo_soundforest.svg と同じ値）。
+     会社案内やOTOMOシリーズなど、会社名義の資料の基調色 */
+  --corp-navy: #133469;
+  --corp-gold: #b29e5e;
   --base-white: #ffffff;
   --base-green: #e5efe7;
   --base-gray: #efefef;

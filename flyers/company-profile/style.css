@@ -1,0 +1,643 @@
+/*
+ * 見出しは公式サイト（soundforest.life）と同じ明朝体、本文は角ゴシック。
+ * @import は他のルールより前に置く必要がある（CSSの規定）。
+ */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap");
+
+/*
+ * 株式会社SoundForest 会社案内（A4縦・全4ページ）専用のスタイル。
+ *
+ * デザインは公式サイトを踏襲し、色はロゴの2色（ネイビーとゴールド）に揃える。
+ * 用紙の枠・改ページ・印刷時の色設定は css/common.css と css/print.css が持つ。
+ *
+ * 用紙の余白は mm、内側の寸法は cqw で書く。cqw は .sheet のコンテンツボックス幅が
+ * 基準なので、画面が狭くて用紙を縮小表示するときも中身が一緒に縮む。
+ *   表紙     : 写真を裁ち落としで置くため余白なし。1cqw = 2.1mm
+ *   2〜4ページ: 左右 16mm の余白を除いた 178mm が基準。1cqw = 1.78mm
+ * .sheet 自身の padding に cqw を使うと用紙ではなく画面幅が基準になるので使わない。
+ */
+
+:root {
+  --navy: var(--corp-navy);
+  --gold: var(--corp-gold);
+  /* ロゴ色を白で薄めた地色と罫線。ブランドカラーの派生なのでここで持つ */
+  --navy-pale: #eef1f7;
+  --gold-pale: #f7f4ec;
+  --line: #dde2ec;
+  --ink: #1f2937;
+  --muted: #5b6474;
+  --font-serif: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+}
+
+body {
+  color: var(--ink);
+  font-family: "Zen Kaku Gothic New", var(--font-sans);
+}
+
+h1, h2, h3, p, ol, ul, dl, dd {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.eyebrow {
+  font-size: 1.5cqw;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ---------- 1ページ 表紙 ---------- */
+
+.cover {
+  display: flex;
+  flex-direction: column;
+}
+
+.cover-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8cqw 8cqw 6cqw;
+}
+
+.cover-head .logo {
+  width: 34cqw;
+}
+
+/*
+ * 公式サイトのトップと同じ写真。右側のネイビー地に白抜きで
+ * キャッチコピーを重ねる（サイトのファーストビューと同じ構図）。
+ */
+.cover-hero {
+  position: relative;
+}
+
+.cover-hero img {
+  display: block;
+  width: 100%;
+}
+
+.cover-hero h1 {
+  position: absolute;
+  top: 50%;
+  right: 6cqw;
+  transform: translateY(-50%);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 5.6cqw;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+  color: #fff;
+  text-shadow: 0 0.3cqw 1.2cqw rgb(0 0 0 / 35%);
+}
+
+.cover-copy {
+  padding: 10cqw 8cqw 0;
+}
+
+.cover-copy .eyebrow {
+  margin-bottom: 4cqw;
+}
+
+.cover-lead {
+  font-family: var(--font-serif);
+  font-size: 3.3cqw;
+  line-height: 2.2;
+  color: var(--navy);
+  padding-left: 4cqw;
+  border-left: 0.5cqw solid var(--gold);
+}
+
+.cover-foot {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 6cqw 8cqw;
+  background: var(--navy);
+  color: #fff;
+  font-size: 1.7cqw;
+  letter-spacing: 0.15em;
+}
+
+.cover-foot .company {
+  font-family: var(--font-serif);
+  font-size: 2.4cqw;
+}
+
+/* ---------- 2〜4ページ 共通の枠 ---------- */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 18mm 16mm 11mm;
+}
+
+/* 用紙上端の帯。ロゴと同じくネイビーにゴールドを差す */
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3mm;
+  background: linear-gradient(90deg, var(--navy) 0 72%, var(--gold) 72%);
+}
+
+.page-head {
+  margin-bottom: 5.1cqw;
+}
+
+.page-head .no {
+  color: var(--navy);
+  margin-right: 1.27cqw;
+}
+
+.section-title {
+  margin-top: 1.02cqw;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 4.08cqw;
+  letter-spacing: 0.06em;
+  color: var(--navy);
+}
+
+/* 小見出し。右に罫線を伸ばす */
+.label {
+  display: flex;
+  align-items: center;
+  gap: 1.7cqw;
+  margin: 0 0 2.04cqw;
+  font-size: 1.7cqw;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--navy);
+}
+
+.label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.page-foot {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 2.55cqw;
+  font-size: 1.27cqw;
+  letter-spacing: 0.08em;
+  color: #8a93a3;
+}
+
+.page-num {
+  font-family: var(--font-serif);
+  font-size: 1.61cqw;
+  color: var(--navy);
+}
+
+/* ---------- 2ページ 私たちについて ---------- */
+
+.philosophy {
+  padding: 3.82cqw 4.25cqw;
+  background: var(--gold-pale);
+  border-left: 0.51cqw solid var(--gold);
+}
+
+.philosophy h3 {
+  margin: 1.02cqw 0 1.53cqw;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 2.72cqw;
+  color: var(--navy);
+}
+
+.philosophy p:last-child {
+  font-size: 1.61cqw;
+  line-height: 2;
+}
+
+.mv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.04cqw;
+  margin-top: 3.82cqw;
+}
+
+.mv-card {
+  padding: 3.4cqw 3.23cqw;
+  border: 1px solid var(--line);
+  border-top: 0.51cqw solid var(--navy);
+}
+
+.mv-card h3 {
+  margin: 0.85cqw 0 1.36cqw;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 2.08cqw;
+  line-height: 1.6;
+  color: var(--navy);
+}
+
+.mv-card p:last-child {
+  font-size: 1.53cqw;
+  line-height: 1.85;
+  color: var(--muted);
+}
+
+.values {
+  margin-top: 3.82cqw;
+}
+
+.values .ja {
+  margin-left: 1.27cqw;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.values ol {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.36cqw;
+  margin-top: 1.53cqw;
+  padding: 0;
+  list-style: none;
+}
+
+.values li {
+  display: flex;
+  align-items: center;
+  gap: 1.19cqw;
+  padding: 2.38cqw 1.87cqw;
+  background: var(--navy-pale);
+  font-size: 1.66cqw;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.values .num {
+  font-family: var(--font-serif);
+  font-size: 2.04cqw;
+  color: var(--gold);
+}
+
+.message {
+  display: grid;
+  grid-template-columns: 25.5cqw 1fr;
+  gap: 3.4cqw;
+  margin-top: 4.67cqw;
+  padding-top: 4.67cqw;
+  border-top: 1px solid var(--line);
+}
+
+.ceo-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+
+.message h3 {
+  margin: 0.85cqw 0 1.7cqw;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 2.8cqw;
+  color: var(--navy);
+}
+
+.message p {
+  font-size: 1.61cqw;
+  line-height: 2;
+}
+
+.message p + p {
+  margin-top: 1.02cqw;
+}
+
+.message .signature {
+  margin-top: 2.12cqw;
+  text-align: right;
+  font-size: 1.4cqw;
+  color: var(--muted);
+}
+
+.signature .name {
+  margin-left: 1.27cqw;
+  font-family: var(--font-serif);
+  font-size: 2.04cqw;
+  color: var(--navy);
+}
+
+/* ---------- 3ページ 事業・サービス紹介 ---------- */
+
+.domains {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.7cqw;
+  margin-bottom: 4.67cqw;
+}
+
+.domain {
+  padding: 3.06cqw 2.55cqw;
+  background: var(--navy-pale);
+  text-align: center;
+}
+
+.domain .kanji {
+  display: inline-grid;
+  place-items: center;
+  width: 7.65cqw;
+  height: 7.65cqw;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 2.04cqw;
+  letter-spacing: 0.05em;
+}
+
+.domain h3 {
+  margin: 1.53cqw 0 0.85cqw;
+  font-size: 1.78cqw;
+  color: var(--navy);
+}
+
+.domain p {
+  font-size: 1.44cqw;
+  line-height: 1.75;
+  text-align: left;
+  color: var(--muted);
+}
+
+.service {
+  border: 1px solid var(--line);
+}
+
+.service + .service {
+  margin-top: 3.4cqw;
+}
+
+.service-head {
+  display: flex;
+  align-items: baseline;
+  gap: 2.04cqw;
+  padding: 2.21cqw 3.06cqw;
+  background: var(--navy);
+  color: #fff;
+}
+
+.service-no {
+  font-size: 1.1cqw;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.service-head h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 2.63cqw;
+  letter-spacing: 0.05em;
+}
+
+.service-tag {
+  margin-left: auto;
+  font-size: 1.44cqw;
+}
+
+.service-body {
+  padding: 2.72cqw 3.06cqw 2.89cqw;
+}
+
+.summary {
+  font-size: 1.57cqw;
+  line-height: 1.85;
+}
+
+.otomo-items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.36cqw;
+  margin-top: 1.87cqw;
+}
+
+.otomo-items div {
+  padding: 1.7cqw 1.7cqw;
+  background: var(--gold-pale);
+  border-top: 0.34cqw solid var(--gold);
+}
+
+.otomo-items b {
+  display: block;
+  margin-bottom: 0.68cqw;
+  font-size: 1.61cqw;
+  color: var(--navy);
+}
+
+.otomo-items p {
+  font-size: 1.36cqw;
+  line-height: 1.7;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.89cqw;
+  margin-top: 1.87cqw;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  position: relative;
+  padding: 1.53cqw 1.36cqw;
+  background: var(--gold-pale);
+  text-align: center;
+  counter-increment: step;
+}
+
+/* ステップ間の矢印 */
+.steps li + li::before {
+  content: "";
+  position: absolute;
+  left: -1.95cqw;
+  top: 50%;
+  border: 0.85cqw solid transparent;
+  border-left: 1.02cqw solid var(--gold);
+  border-right-width: 0;
+  transform: translateY(-50%);
+}
+
+.steps b {
+  display: block;
+  font-size: 1.57cqw;
+  color: var(--navy);
+}
+
+.steps b::before {
+  content: counter(step) ". ";
+  font-family: var(--font-serif);
+  color: var(--gold);
+}
+
+.steps span {
+  display: block;
+  margin-top: 0.42cqw;
+  font-size: 1.32cqw;
+  color: var(--muted);
+}
+
+.points {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.19cqw;
+  margin-top: 1.36cqw;
+  padding: 0;
+  list-style: none;
+}
+
+.points li {
+  padding: 1.02cqw 1.36cqw;
+  border-left: 0.34cqw solid var(--navy);
+  background: var(--navy-pale);
+  font-size: 1.36cqw;
+}
+
+.more {
+  margin-top: 1.53cqw;
+  font-size: 1.36cqw;
+  color: var(--muted);
+}
+
+.more a {
+  color: var(--navy);
+  font-weight: 700;
+  border-bottom: 1px solid var(--gold);
+}
+
+/* ---------- 4ページ 会社概要・お問い合わせ ---------- */
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 27.2cqw;
+  gap: 3.4cqw;
+  align-items: start;
+  margin-bottom: 5.1cqw;
+}
+
+.company-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.66cqw;
+}
+
+.company-table tr {
+  border-bottom: 1px solid var(--line);
+}
+
+.company-table tr:first-child {
+  border-top: 0.26cqw solid var(--navy);
+}
+
+.company-table th {
+  width: 32%;
+  padding: 2.12cqw 1.27cqw;
+  text-align: left;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.company-table td {
+  padding: 2.12cqw 1.27cqw;
+  font-weight: 500;
+}
+
+.team-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: 45% 50%;
+}
+
+.links {
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.links li {
+  display: grid;
+  grid-template-columns: 20.4cqw 17cqw 1fr;
+  align-items: baseline;
+  padding: 1.78cqw 1.27cqw;
+  border-bottom: 1px solid var(--line);
+  font-size: 1.49cqw;
+}
+
+.links b {
+  font-size: 1.7cqw;
+  color: var(--navy);
+}
+
+.links span {
+  color: var(--muted);
+}
+
+.links a {
+  justify-self: end;
+  font-size: 1.36cqw;
+  color: var(--navy);
+}
+
+.contact {
+  position: relative;
+  margin-top: 5.1cqw;
+  padding: 3.82cqw 4.25cqw;
+  background: var(--gold-pale);
+  border-top: 0.51cqw solid var(--gold);
+}
+
+.contact h3 {
+  margin: 1.19cqw 0 1.19cqw;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 2.72cqw;
+  line-height: 1.6;
+  color: var(--navy);
+}
+
+.contact > p:not(.eyebrow) {
+  font-size: 1.53cqw;
+  color: var(--muted);
+}
+
+.contact dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.68cqw 2.55cqw;
+  margin-top: 2.21cqw;
+  font-size: 1.57cqw;
+}
+
+.contact dt {
+  color: var(--muted);
+}
+
+.contact dd a {
+  font-weight: 700;
+  color: var(--navy);
+  border-bottom: 1px solid var(--gold);
+}
+
+.contact .logo {
+  position: absolute;
+  right: 4.25cqw;
+  bottom: 3.82cqw;
+  width: 20.4cqw;
+}

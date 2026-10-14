@@ -1,0 +1,700 @@
+/*
+ * 本文フォントは公式サイト（soundforest.life）と同じ角ゴシック。
+ * @import は他のルールより前に置く必要がある（CSSの規定）。
+ */
+@import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap");
+
+/*
+ * OTOMOシリーズ サービス紹介（A4縦・全4ページ）専用のスタイル。
+ *
+ * デザインはOTOMOシリーズの公式ページを踏襲する。表紙と裏表紙の見出し帯は
+ * サイトのファーストビューと同じネイビーからゴールドへのグラデーション。
+ * 3つのサービスは、それぞれのロゴの色で塗り分ける。
+ * 用紙の枠・改ページ・印刷時の色設定は css/common.css と css/print.css が持つ。
+ *
+ * 用紙の余白は mm、内側の寸法は cqw で書く。cqw は .sheet のコンテンツボックス幅が
+ * 基準なので、画面が狭くて用紙を縮小表示するときも中身が一緒に縮む。
+ *   表紙     : グラデーションを裁ち落としで置くため余白なし。1cqw = 2.1mm
+ *   2〜4ページ: 左右 16mm の余白を除いた 178mm が基準。1cqw = 1.78mm
+ * .sheet 自身の padding に cqw を使うと用紙ではなく画面幅が基準になるので使わない。
+ */
+
+:root {
+  --navy: var(--corp-navy);
+  --gold: var(--corp-gold);
+  /* サービスごとの色。images/ の各サービスロゴと同じ値 */
+  --ai: #e56a33;
+  --reskill: #088475;
+  --dev: #0e508c;
+  /* 上の3色を白で薄めた地色 */
+  --ai-pale: #fdf0ea;
+  --reskill-pale: #e6f4f1;
+  --dev-pale: #e8eff6;
+  /* OTOMOシリーズ公式ページのファーストビューと同じグラデーション */
+  --hero: linear-gradient(105deg, #0a1628 0%, #0f2d4a 42%, #1a4a6e 58%, #b8942e 92%, #d4a84b 100%);
+  --line: #dde4ea;
+  --mist: #f4f6f8;
+  --ink: #1f2937;
+  --muted: #5b6b78;
+}
+
+body {
+  color: var(--ink);
+  font-family: "Zen Kaku Gothic New", var(--font-sans);
+}
+
+h1, h2, h3, h4, p, ol, ul, dl, dd, figure {
+  margin: 0;
+}
+
+ol, ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* サービス色の割り当て。子孫は var(--c) / var(--pale) で参照する */
+.ai { --c: var(--ai); --pale: var(--ai-pale); }
+.reskill { --c: var(--reskill); --pale: var(--reskill-pale); }
+.dev { --c: var(--dev); --pale: var(--dev-pale); }
+
+.eyebrow {
+  font-size: 1.6cqw;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+}
+
+/* ---------- 1ページ 表紙 ---------- */
+
+.cover {
+  display: flex;
+  flex-direction: column;
+}
+
+.cover-hero {
+  position: relative;
+  padding: 8cqw 8cqw 7cqw;
+  background: var(--hero);
+  color: #fff;
+  overflow: hidden;
+}
+
+/* サイトの背景と同じ細かいドット */
+.cover-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(rgb(255 255 255 / 14%) 0.1cqw, transparent 0.1cqw) 0 0 / 1.6cqw 1.6cqw;
+}
+
+.cover-hero > * {
+  position: relative;
+}
+
+.cover-flag {
+  display: inline-block;
+  padding: 0.8cqw 2.4cqw;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 10cqw;
+  font-size: 1.6cqw;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.cover-logo {
+  display: block;
+  width: 46cqw;
+  margin-top: 5.5cqw;
+}
+
+.cover-series {
+  margin-top: 1.4cqw;
+  font-size: 1.8cqw;
+  font-weight: 900;
+  letter-spacing: 0.5em;
+  color: #e5c879;
+}
+
+.cover-hero h1 {
+  margin-top: 5cqw;
+  font-size: 6.4cqw;
+  font-weight: 900;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.cover-hero h1 span {
+  color: #e5c879;
+}
+
+.cover-sub {
+  margin-top: 3cqw;
+  font-size: 2.1cqw;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+}
+
+.cover-body {
+  padding: 5.5cqw 8cqw 0;
+}
+
+.cover-lead {
+  font-size: 2.8cqw;
+  font-weight: 900;
+  color: #0f2d4a;
+}
+
+.cover-desc {
+  margin-top: 2.4cqw;
+  font-size: 1.85cqw;
+  line-height: 2;
+  color: var(--muted);
+}
+
+.trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3cqw;
+  margin-top: 4.5cqw;
+  text-align: center;
+}
+
+.trio li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trio .badge {
+  display: grid;
+  place-items: center;
+  width: 16cqw;
+  height: 16cqw;
+  border-radius: 50%;
+  background: var(--pale);
+  border: 0.5cqw solid var(--c);
+}
+
+.trio .badge img {
+  width: 9.5cqw;
+  height: 9.5cqw;
+  object-fit: contain;
+}
+
+.trio b {
+  margin-top: 2cqw;
+  font-size: 2cqw;
+  font-weight: 900;
+  color: var(--c);
+}
+
+.trio li > span:last-child {
+  font-size: 1.6cqw;
+  color: var(--muted);
+}
+
+.cover-foot {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-inline: 8cqw;
+  padding: 3.5cqw 0 5cqw;
+  border-top: 1px solid var(--line);
+  font-size: 1.7cqw;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.cover-foot img {
+  width: 28cqw;
+}
+
+/* ---------- 2〜4ページ 共通の枠 ---------- */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 13mm 16mm 0;
+}
+
+/* 用紙下端の帯。3サービスの色を並べる */
+.page::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2.5mm;
+  background: linear-gradient(90deg, var(--ai) 0 33.33%, var(--reskill) 33.33% 66.66%, var(--dev) 66.66%);
+}
+
+.page-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 2cqw;
+  border-bottom: 1px solid var(--line);
+  font-size: 1.6cqw;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.page-top .series {
+  font-size: 2.1cqw;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--navy);
+}
+
+.page-head {
+  margin: 4.5cqw 0 4cqw;
+}
+
+.page-head .eyebrow {
+  margin-bottom: 1.6cqw;
+}
+
+.section-title {
+  font-size: 4.6cqw;
+  font-weight: 900;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: var(--navy);
+}
+
+.intro {
+  margin-top: 2.4cqw;
+  font-size: 1.95cqw;
+  line-height: 1.85;
+  color: var(--muted);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 2cqw;
+  margin: 0 0 2.4cqw;
+  font-size: 2.3cqw;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+.label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.page-foot {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 3cqw 0 6.5mm;
+  font-size: 1.5cqw;
+  letter-spacing: 0.04em;
+  color: #8a99a6;
+}
+
+.page-num {
+  font-size: 2cqw;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+/* ---------- 2ページ 3つのサービス ---------- */
+
+.services {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2cqw;
+}
+
+.service {
+  display: grid;
+  grid-template-columns: 22cqw 1fr;
+  gap: 4cqw;
+  padding: 3cqw 3.6cqw 3cqw 3cqw;
+  border: 1px solid var(--line);
+  border-left: 0.6cqw solid var(--c);
+}
+
+.service-art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2cqw;
+  background: var(--pale);
+}
+
+.service-art img {
+  width: 13cqw;
+  height: 13cqw;
+  object-fit: contain;
+}
+
+.service-art .role {
+  font-size: 1.3cqw;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c);
+  opacity: 0.7;
+}
+
+.service-art .verb {
+  font-size: 1.65cqw;
+  font-weight: 900;
+  color: var(--c);
+}
+
+.service .kind {
+  font-size: 1.55cqw;
+  font-weight: 900;
+  color: var(--c);
+}
+
+/* サービス名はロゴ画像で見せる。高さを揃えて幅は成り行き */
+.service h3 img {
+  display: block;
+  height: 3.6cqw;
+  max-width: none;
+  margin: 1.4cqw 0 1.8cqw;
+}
+
+.service h4 {
+  font-size: 2.1cqw;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+.service h4 + p {
+  margin-top: 1.2cqw;
+  font-size: 1.7cqw;
+  line-height: 1.85;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8cqw;
+  margin-top: 2cqw;
+}
+
+.tags li {
+  padding: 0.4cqw 1.6cqw;
+  border-radius: 10cqw;
+  background: var(--pale);
+  font-size: 1.45cqw;
+  font-weight: 700;
+}
+
+.note {
+  margin-top: 2.6cqw;
+  padding: 2.2cqw;
+  background: var(--mist);
+  text-align: center;
+  font-size: 1.8cqw;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+/* ---------- 3ページ 選ばれる理由と導入事例 ---------- */
+
+.with-photo {
+  display: grid;
+  grid-template-columns: 1fr 34cqw;
+  gap: 4cqw;
+  align-items: end;
+}
+
+.with-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.strengths {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8cqw;
+}
+
+.strengths li {
+  display: grid;
+  grid-template-columns: 8cqw 1fr;
+  gap: 2cqw;
+  padding: 2.2cqw 3cqw;
+  background: var(--mist);
+}
+
+.strengths .count {
+  font-size: 3.8cqw;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--gold);
+}
+
+.strengths h3 {
+  font-size: 2.1cqw;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+.strengths p {
+  margin-top: 0.6cqw;
+  font-size: 1.7cqw;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.case-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 3.6cqw 0 2cqw;
+  padding-bottom: 1.6cqw;
+  border-bottom: 1px solid var(--line);
+}
+
+.case-title h3 {
+  font-size: 2.6cqw;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+.case-title span {
+  font-size: 1.45cqw;
+  color: var(--muted);
+}
+
+.cases {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6cqw;
+}
+
+.case {
+  display: grid;
+  grid-template-columns: 17cqw 1fr;
+  border: 1px solid var(--line);
+}
+
+.case .genre {
+  display: grid;
+  place-items: center;
+  padding: 2cqw 1cqw;
+  background: var(--pale);
+  text-align: center;
+  font-size: 1.55cqw;
+  font-weight: 900;
+  line-height: 1.5;
+  color: var(--c);
+}
+
+.case > div {
+  padding: 1.8cqw 3cqw;
+}
+
+.case h4 {
+  font-size: 1.8cqw;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+.case h4 + p {
+  margin-top: 0.6cqw;
+  font-size: 1.6cqw;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.closing {
+  margin-top: 3cqw;
+  padding: 2.8cqw 4cqw;
+  background: var(--hero);
+  color: #fff;
+  font-size: 2cqw;
+  font-weight: 900;
+  line-height: 1.8;
+}
+
+/* ---------- 4ページ 料金とお問い合わせ ---------- */
+
+.back-hero {
+  position: relative;
+  margin: 5cqw 0 5cqw;
+  padding: 5cqw 5.5cqw;
+  background: var(--hero);
+  color: #fff;
+  overflow: hidden;
+}
+
+.back-hero .eyebrow {
+  color: #e5c879;
+}
+
+.back-hero h2 {
+  margin: 1.8cqw 0 2cqw;
+  font-size: 3.9cqw;
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.back-hero p:last-child {
+  max-width: 70cqw;
+  font-size: 1.75cqw;
+  line-height: 1.85;
+  opacity: 0.9;
+}
+
+.prices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6cqw;
+}
+
+.price {
+  padding: 2.4cqw 3cqw;
+  background: var(--mist);
+  border-left: 0.6cqw solid var(--c);
+}
+
+.price p {
+  font-size: 1.6cqw;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.price b {
+  display: block;
+  margin-top: 0.4cqw;
+  font-size: 3cqw;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+.price small {
+  margin-left: 0.6cqw;
+  font-size: 1.5cqw;
+  color: var(--muted);
+}
+
+.price-note {
+  margin: 1.8cqw 0 5cqw;
+  font-size: 1.45cqw;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3cqw;
+}
+
+.steps li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 13cqw;
+  padding: 2cqw 1cqw;
+  background: var(--reskill-pale);
+  text-align: center;
+  font-size: 1.8cqw;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+/* ステップ間の矢印 */
+.steps li + li::before {
+  content: "";
+  position: absolute;
+  left: -2.1cqw;
+  top: 50%;
+  border: 1cqw solid transparent;
+  border-left: 1.2cqw solid var(--gold);
+  border-right-width: 0;
+  transform: translateY(-50%);
+}
+
+.steps .n {
+  margin-bottom: 0.8cqw;
+  font-size: 1.4cqw;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--reskill);
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 22cqw;
+  gap: 5cqw;
+  align-items: center;
+  margin-top: 5cqw;
+  padding-top: 4.5cqw;
+  border-top: 1px solid var(--line);
+}
+
+.contact .org {
+  margin-top: 1cqw;
+  font-size: 2.8cqw;
+  font-weight: 900;
+  color: var(--navy);
+}
+
+.contact dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6cqw 3cqw;
+  margin-top: 1.8cqw;
+  font-size: 1.7cqw;
+}
+
+.contact dt {
+  color: var(--muted);
+}
+
+.contact dd a {
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.button {
+  display: inline-block;
+  margin-top: 3cqw;
+  padding: 1.6cqw 5cqw;
+  border-radius: 10cqw;
+  background: var(--navy);
+  color: #fff;
+  font-size: 1.8cqw;
+  font-weight: 900;
+}
+
+.qr {
+  text-align: center;
+}
+
+.qr img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+}
+
+.qr figcaption {
+  margin-top: 1cqw;
+  font-size: 1.45cqw;
+  font-weight: 700;
+  color: var(--muted);
+}
