@@ -513,9 +513,10 @@ a {
 
 /* ---------- 4ページ 会社概要・お問い合わせ ---------- */
 
+/* 写真は2人が切れないよう元の4:3のまま見せ、その分だけ表を詰める */
 .info {
   display: grid;
-  grid-template-columns: 1fr 27.2cqw;
+  grid-template-columns: 1fr 48cqw;
   gap: 3.4cqw;
   align-items: start;
   margin-bottom: 5.1cqw;
@@ -550,9 +551,8 @@ a {
 
 .team-photo {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  object-position: 45% 50%;
 }
 
 .links {
