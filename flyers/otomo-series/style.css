@@ -686,17 +686,6 @@ a {
   color: var(--navy);
 }
 
-.button {
-  display: inline-block;
-  margin-top: 3cqw;
-  padding: 1.6cqw 5cqw;
-  border-radius: 10cqw;
-  background: var(--navy);
-  color: #fff;
-  font-size: 1.8cqw;
-  font-weight: 900;
-}
-
 .qr {
   text-align: center;
 }
