@@ -53,81 +53,59 @@ a {
 
 /* ---------- 1ページ 表紙 ---------- */
 
-.cover {
+/*
+ * 縦長の図案（約1:2）を用紙の高さいっぱいに右寄せで置き、
+ * 残った左の帯（約59mm）の上下にロゴと社名を置く。
+ * キャッチは公式サイトのトップと同じく、図案上部のネイビー地に白抜きで重ねる。
+ */
+.cover-art {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 71.8cqw;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-side {
+  position: absolute;
+  inset: 0 71.8cqw 0 0;
   display: flex;
   flex-direction: column;
-}
-
-.cover-head {
-  display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 8cqw 8cqw 6cqw;
+  padding: 9cqw 3cqw 8cqw;
 }
 
-.cover-head .logo {
-  width: 34cqw;
+.cover-side .logo {
+  width: 22cqw;
 }
 
-/*
- * 公式サイトのトップと同じ写真。右側のネイビー地に白抜きで
- * キャッチコピーを重ねる（サイトのファーストビューと同じ構図）。
- */
-.cover-hero {
-  position: relative;
+.cover-company {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.4cqw;
+  font-family: var(--font-serif);
+  font-size: 2cqw;
+  letter-spacing: 0.1em;
+  color: var(--navy);
 }
 
-.cover-hero img {
-  display: block;
-  width: 100%;
+.cover-company .eyebrow {
+  font-family: var(--font-sans);
+  font-size: 1.3cqw;
 }
 
-.cover-hero h1 {
+.cover h1 {
   position: absolute;
-  top: 50%;
-  right: 6cqw;
-  transform: translateY(-50%);
+  top: 25.75cqw;
+  right: 1.5cqw;
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 5.6cqw;
-  line-height: 1.6;
-  letter-spacing: 0.08em;
+  font-size: 4.5cqw;
+  line-height: 1.7;
+  letter-spacing: 0.1em;
   color: #fff;
-  text-shadow: 0 0.3cqw 1.2cqw rgb(0 0 0 / 35%);
-}
-
-.cover-copy {
-  padding: 10cqw 8cqw 0;
-}
-
-.cover-copy .eyebrow {
-  margin-bottom: 4cqw;
-}
-
-.cover-lead {
-  font-family: var(--font-serif);
-  font-size: 3.3cqw;
-  line-height: 2.2;
-  color: var(--navy);
-  padding-left: 4cqw;
-  border-left: 0.5cqw solid var(--gold);
-}
-
-.cover-foot {
-  margin-top: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 6cqw 8cqw;
-  background: var(--navy);
-  color: #fff;
-  font-size: 1.7cqw;
-  letter-spacing: 0.15em;
-}
-
-.cover-foot .company {
-  font-family: var(--font-serif);
-  font-size: 2.4cqw;
+  text-shadow: 0 0.3cqw 1.2cqw rgb(0 0 0 / 30%);
 }
 
 /* ---------- 2〜4ページ 共通の枠 ---------- */
@@ -348,17 +326,21 @@ a {
   text-align: center;
 }
 
-.domain .kanji {
-  display: inline-grid;
-  place-items: center;
-  width: 7.65cqw;
-  height: 7.65cqw;
-  border-radius: 50%;
-  background: var(--navy);
-  color: #fff;
+/* HPの事業内容ページと同じアイコン（Font Awesome） */
+.domain .icon {
+  display: block;
+  width: auto;
+  height: 6.5cqw;
+  margin: 0 auto;
+}
+
+.domain p.kanji {
+  margin-top: 1.6cqw;
   font-family: var(--font-serif);
-  font-size: 2.04cqw;
-  letter-spacing: 0.05em;
+  font-size: 2.2cqw;
+  letter-spacing: 0.3em;
+  text-align: center;
+  color: var(--gold);
 }
 
 .domain h3 {
@@ -414,6 +396,12 @@ a {
   padding: 2.72cqw 3.06cqw 2.89cqw;
 }
 
+.service-logo {
+  display: block;
+  height: 6cqw;
+  margin-bottom: 2cqw;
+}
+
 .summary {
   font-size: 1.57cqw;
   line-height: 1.85;
@@ -432,11 +420,14 @@ a {
   border-top: 0.34cqw solid var(--gold);
 }
 
-.otomo-items b {
+/* サービス名はロゴ画像で見せる。高さを揃えて幅は成り行き */
+.otomo-items h4 {
+  margin: 0 0 1.2cqw;
+}
+
+.otomo-items h4 img {
   display: block;
-  margin-bottom: 0.68cqw;
-  font-size: 1.61cqw;
-  color: var(--navy);
+  height: 3cqw;
 }
 
 .otomo-items p {
@@ -523,9 +514,10 @@ a {
 
 /* ---------- 4ページ 会社概要・お問い合わせ ---------- */
 
+/* 写真は2人が切れないよう元の4:3のまま見せ、その分だけ表を詰める */
 .info {
   display: grid;
-  grid-template-columns: 1fr 27.2cqw;
+  grid-template-columns: 1fr 48cqw;
   gap: 3.4cqw;
   align-items: start;
   margin-bottom: 5.1cqw;
@@ -560,9 +552,8 @@ a {
 
 .team-photo {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  object-position: 45% 50%;
 }
 
 .links {
