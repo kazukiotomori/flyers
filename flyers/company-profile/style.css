@@ -96,23 +96,6 @@ a {
   text-shadow: 0 0.3cqw 1.2cqw rgb(0 0 0 / 35%);
 }
 
-.cover-copy {
-  padding: 10cqw 8cqw 0;
-}
-
-.cover-copy .eyebrow {
-  margin-bottom: 4cqw;
-}
-
-.cover-lead {
-  font-family: var(--font-serif);
-  font-size: 3.3cqw;
-  line-height: 2.2;
-  color: var(--navy);
-  padding-left: 4cqw;
-  border-left: 0.5cqw solid var(--gold);
-}
-
 .cover-foot {
   margin-top: auto;
   display: flex;
