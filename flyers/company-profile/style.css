@@ -53,64 +53,58 @@ a {
 
 /* ---------- 1ページ 表紙 ---------- */
 
-.cover {
+/*
+ * 縦長の図案（約1:2）を用紙の高さいっぱいに右寄せで置き、
+ * 残った左の帯（約59mm）にロゴ・キャッチ・社名を縦に並べる。
+ * キャッチは帯の幅に収まるよう縦書きにしている。
+ */
+.cover-art {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 71.8cqw;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-side {
+  position: absolute;
+  inset: 0 71.8cqw 0 0;
   display: flex;
   flex-direction: column;
-}
-
-.cover-head {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 8cqw 8cqw 6cqw;
+  padding: 9cqw 3cqw 8cqw;
 }
 
-.cover-head .logo {
-  width: 34cqw;
+.cover-side .logo {
+  width: 22cqw;
 }
 
-/*
- * 公式サイトのトップと同じ写真。右側のネイビー地に白抜きで
- * キャッチコピーを重ねる（サイトのファーストビューと同じ構図）。
- */
-.cover-hero {
-  position: relative;
-}
-
-.cover-hero img {
-  display: block;
-  width: 100%;
-}
-
-.cover-hero h1 {
-  position: absolute;
-  top: 50%;
-  right: 6cqw;
-  transform: translateY(-50%);
+.cover-side h1 {
+  margin: auto 0;
+  writing-mode: vertical-rl;
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 5.6cqw;
-  line-height: 1.6;
-  letter-spacing: 0.08em;
-  color: #fff;
-  text-shadow: 0 0.3cqw 1.2cqw rgb(0 0 0 / 35%);
+  font-size: 5.4cqw;
+  line-height: 1.8;
+  letter-spacing: 0.18em;
+  color: var(--navy);
 }
 
-.cover-foot {
-  margin-top: auto;
+.cover-company {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 6cqw 8cqw;
-  background: var(--navy);
-  color: #fff;
-  font-size: 1.7cqw;
-  letter-spacing: 0.15em;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4cqw;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 2cqw;
+  letter-spacing: 0.1em;
+  color: var(--navy);
 }
 
-.cover-foot .company {
-  font-family: var(--font-serif);
-  font-size: 2.4cqw;
+.cover-company .eyebrow {
+  font-family: var(--font-sans);
+  font-size: 1.3cqw;
 }
 
 /* ---------- 2〜4ページ 共通の枠 ---------- */
