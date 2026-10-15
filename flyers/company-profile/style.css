@@ -55,8 +55,8 @@ a {
 
 /*
  * 縦長の図案（約1:2）を用紙の高さいっぱいに右寄せで置き、
- * 残った左の帯（約59mm）にロゴ・キャッチ・社名を縦に並べる。
- * キャッチは横書きで、帯の幅に収まるよう3〜4文字ずつ改行している。
+ * 残った左の帯（約59mm）の上下にロゴと社名を置く。
+ * キャッチは公式サイトのトップと同じく、図案上部のネイビー地に白抜きで重ねる。
  */
 .cover-art {
   position: absolute;
@@ -71,7 +71,7 @@ a {
   inset: 0 71.8cqw 0 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
   padding: 9cqw 3cqw 8cqw;
 }
 
@@ -79,22 +79,11 @@ a {
   width: 22cqw;
 }
 
-.cover-side h1 {
-  margin: auto 0;
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 4.8cqw;
-  line-height: 1.7;
-  letter-spacing: 0.1em;
-  color: var(--navy);
-}
-
 .cover-company {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.4cqw;
-  text-align: center;
   font-family: var(--font-serif);
   font-size: 2cqw;
   letter-spacing: 0.1em;
@@ -104,6 +93,19 @@ a {
 .cover-company .eyebrow {
   font-family: var(--font-sans);
   font-size: 1.3cqw;
+}
+
+.cover h1 {
+  position: absolute;
+  top: 25.75cqw;
+  right: 1.5cqw;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 5cqw;
+  line-height: 1.7;
+  letter-spacing: 0.1em;
+  color: #fff;
+  text-shadow: 0 0.3cqw 1.2cqw rgb(0 0 0 / 30%);
 }
 
 /* ---------- 2〜4ページ 共通の枠 ---------- */
