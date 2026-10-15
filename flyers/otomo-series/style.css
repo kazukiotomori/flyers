@@ -106,17 +106,24 @@ a {
   letter-spacing: 0.1em;
 }
 
-.cover-logo {
-  display: block;
-  width: 46cqw;
+/* ロゴの右にSERIESを置き、文字の下端をロゴの下端に揃える */
+.cover-brand {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.4cqw;
   margin-top: 5.5cqw;
 }
 
-.cover-series {
-  margin-top: 1.4cqw;
-  font-size: 1.8cqw;
+.cover-brand img {
+  width: 46cqw;
+}
+
+.cover-brand span {
+  margin-bottom: 0.4cqw;
+  font-size: 2.6cqw;
   font-weight: 900;
-  letter-spacing: 0.5em;
+  line-height: 1;
+  letter-spacing: 0.3em;
   color: #e5c879;
 }
 
