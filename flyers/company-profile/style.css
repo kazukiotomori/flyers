@@ -56,7 +56,7 @@ a {
 /*
  * 縦長の図案（約1:2）を用紙の高さいっぱいに右寄せで置き、
  * 残った左の帯（約59mm）にロゴ・キャッチ・社名を縦に並べる。
- * キャッチは帯の幅に収まるよう縦書きにしている。
+ * キャッチは横書きで、帯の幅に収まるよう3〜4文字ずつ改行している。
  */
 .cover-art {
   position: absolute;
@@ -81,12 +81,11 @@ a {
 
 .cover-side h1 {
   margin: auto 0;
-  writing-mode: vertical-rl;
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 5.4cqw;
-  line-height: 1.8;
-  letter-spacing: 0.18em;
+  font-size: 4.8cqw;
+  line-height: 1.7;
+  letter-spacing: 0.1em;
   color: var(--navy);
 }
 
