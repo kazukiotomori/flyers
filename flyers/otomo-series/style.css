@@ -320,17 +320,29 @@ a {
 
 /* ---------- 2ページ 3つのサービス ---------- */
 
+/* 見出しの左にイラストを置く */
+.with-art {
+  display: grid;
+  grid-template-columns: 30cqw 1fr;
+  gap: 5cqw;
+  align-items: center;
+}
+
+.with-art img {
+  width: 100%;
+}
+
 .services {
   display: flex;
   flex-direction: column;
-  gap: 2.2cqw;
+  gap: 1.8cqw;
 }
 
 .service {
   display: grid;
   grid-template-columns: 22cqw 1fr;
   gap: 4cqw;
-  padding: 3cqw 3.6cqw 3cqw 3cqw;
+  padding: 2.4cqw 3.6cqw 2.4cqw 3cqw;
   border: 1px solid var(--line);
   border-left: 0.6cqw solid var(--c);
 }
@@ -374,9 +386,9 @@ a {
 /* サービス名はロゴ画像で見せる。高さを揃えて幅は成り行き */
 .service h3 img {
   display: block;
-  height: 3.6cqw;
+  height: 5.4cqw;
   max-width: none;
-  margin: 1.4cqw 0 1.8cqw;
+  margin: 0.6cqw 0 1cqw;
 }
 
 .service h4 {
