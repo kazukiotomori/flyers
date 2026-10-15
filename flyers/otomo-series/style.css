@@ -492,20 +492,16 @@ a {
   color: var(--navy);
 }
 
-.case-title span {
-  font-size: 1.45cqw;
-  color: var(--muted);
-}
-
 .cases {
   display: flex;
   flex-direction: column;
   gap: 1.6cqw;
 }
 
+/* 事例の説明文は1行に収めたいので、左の見出し列は最小限の幅にする */
 .case {
   display: grid;
-  grid-template-columns: 17cqw 1fr;
+  grid-template-columns: 15cqw 1fr;
   border: 1px solid var(--line);
 }
 
@@ -522,7 +518,7 @@ a {
 }
 
 .case > div {
-  padding: 1.8cqw 3cqw;
+  padding: 1.8cqw 2.4cqw 1.8cqw 3cqw;
 }
 
 .case h4 {
@@ -533,7 +529,7 @@ a {
 
 .case h4 + p {
   margin-top: 0.6cqw;
-  font-size: 1.6cqw;
+  font-size: 1.55cqw;
   line-height: 1.75;
   color: var(--muted);
 }
