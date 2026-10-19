@@ -106,17 +106,24 @@ a {
   letter-spacing: 0.1em;
 }
 
-.cover-logo {
-  display: block;
-  width: 46cqw;
+/* ロゴの右にSERIESを置き、文字の下端をロゴの下端に揃える */
+.cover-brand {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.4cqw;
   margin-top: 5.5cqw;
 }
 
-.cover-series {
-  margin-top: 1.4cqw;
-  font-size: 1.8cqw;
+.cover-brand img {
+  width: 46cqw;
+}
+
+.cover-brand span {
+  margin-bottom: 0.4cqw;
+  font-size: 2.6cqw;
   font-weight: 900;
-  letter-spacing: 0.5em;
+  line-height: 1;
+  letter-spacing: 0.3em;
   color: #e5c879;
 }
 
@@ -313,17 +320,29 @@ a {
 
 /* ---------- 2ページ 3つのサービス ---------- */
 
+/* 見出しの右にイラストを置く */
+.with-art {
+  display: grid;
+  grid-template-columns: 1fr 30cqw;
+  gap: 5cqw;
+  align-items: center;
+}
+
+.with-art img {
+  width: 100%;
+}
+
 .services {
   display: flex;
   flex-direction: column;
-  gap: 2.2cqw;
+  gap: 1.8cqw;
 }
 
 .service {
   display: grid;
   grid-template-columns: 22cqw 1fr;
   gap: 4cqw;
-  padding: 3cqw 3.6cqw 3cqw 3cqw;
+  padding: 2.4cqw 3.6cqw 2.4cqw 3cqw;
   border: 1px solid var(--line);
   border-left: 0.6cqw solid var(--c);
 }
@@ -367,9 +386,9 @@ a {
 /* サービス名はロゴ画像で見せる。高さを揃えて幅は成り行き */
 .service h3 img {
   display: block;
-  height: 3.6cqw;
+  height: 5.4cqw;
   max-width: none;
-  margin: 1.4cqw 0 1.8cqw;
+  margin: 0.6cqw 0 1cqw;
 }
 
 .service h4 {
@@ -473,20 +492,16 @@ a {
   color: var(--navy);
 }
 
-.case-title span {
-  font-size: 1.45cqw;
-  color: var(--muted);
-}
-
 .cases {
   display: flex;
   flex-direction: column;
   gap: 1.6cqw;
 }
 
+/* 事例の説明文は1行に収めたいので、左の見出し列は最小限の幅にする */
 .case {
   display: grid;
-  grid-template-columns: 17cqw 1fr;
+  grid-template-columns: 15cqw 1fr;
   border: 1px solid var(--line);
 }
 
@@ -503,7 +518,7 @@ a {
 }
 
 .case > div {
-  padding: 1.8cqw 3cqw;
+  padding: 1.8cqw 2.4cqw 1.8cqw 3cqw;
 }
 
 .case h4 {
@@ -514,7 +529,7 @@ a {
 
 .case h4 + p {
   margin-top: 0.6cqw;
-  font-size: 1.6cqw;
+  font-size: 1.55cqw;
   line-height: 1.75;
   color: var(--muted);
 }
@@ -669,17 +684,6 @@ a {
 .contact dd a {
   font-weight: 700;
   color: var(--navy);
-}
-
-.button {
-  display: inline-block;
-  margin-top: 3cqw;
-  padding: 1.6cqw 5cqw;
-  border-radius: 10cqw;
-  background: var(--navy);
-  color: #fff;
-  font-size: 1.8cqw;
-  font-weight: 900;
 }
 
 .qr {
