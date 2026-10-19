@@ -320,10 +320,10 @@ a {
 
 /* ---------- 2ページ 3つのサービス ---------- */
 
-/* 見出しの左にイラストを置く */
+/* 見出しの右にイラストを置く */
 .with-art {
   display: grid;
-  grid-template-columns: 30cqw 1fr;
+  grid-template-columns: 1fr 30cqw;
   gap: 5cqw;
   align-items: center;
 }
