@@ -101,7 +101,6 @@ body {
 .cover:after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 67% 53%,var(--green-soft) 0%,#f2f7f300 38%),linear-gradient(135deg,#fff 0%,var(--green-soft) 78%);z-index:-2}
 .cover .cover-orb{position:absolute;width:62.626cqw;height:62.626cqw;border-radius:50%;background:linear-gradient(140deg,var(--green),var(--teal-soft));right:-7.475cqw;top:8.283cqw;z-index:-1}
 .cover .cover-orb:after{content:'';position:absolute;border:0.202cqw dashed #fff9;border-radius:50%;width:47.98cqw;height:47.98cqw;top:7.273cqw;left:7.273cqw}
-.cover-brand{font-size:2.525cqw;font-weight:900;color:var(--teal);letter-spacing:.07em}
 .cover .cover-left{position:absolute;left:7.071cqw;top:17.172cqw;z-index:3;width:55.556cqw}
 .cover h1{font-size:7.071cqw;color:var(--heading);letter-spacing:-.04em;line-height:1.42;margin:2.525cqw 0 1.818cqw;font-weight:900}
 .cover h1 .highlight{color:var(--teal)}
@@ -175,7 +174,6 @@ body {
 .tag-mark,.tag-name{display:block;background:var(--teal);-webkit-mask:var(--logo) center / contain no-repeat;mask:var(--logo) center / contain no-repeat}
 .tag-mark{--logo:url("images/logo_mamoppi_mark.png");width:7.3cqw;aspect-ratio:468 / 576}
 .tag-name{--logo:url("images/logo_mamoppi_text.png");width:13cqw;aspect-ratio:1191 / 276}
-.tag-label{position:absolute;bottom:2.323cqw;left:0;right:0;font-size:1.313cqw;letter-spacing:.08em;text-align:center;color:var(--teal);font-weight:850}
 .product-features{display:grid;grid-template-columns:1fr 1fr;gap:1.515cqw;align-content:start}
 .product-feature{border:0.101cqw solid var(--green);background:#fff;border-radius:1.818cqw;padding:2.02cqw;min-height:17.273cqw}
 .product-feature h3{font-size:2.272cqw;margin:1.212cqw 0 0.606cqw;color:var(--heading)}
@@ -219,7 +217,6 @@ body {
 .comparison th:last-child,.comparison td:last-child{border-right:none}
 .comparison .yes{color:var(--teal);font-size:2.909cqw;font-weight:900}
 .comparison .no{color:var(--faint);font-size:2.666cqw}
-.compar-note{font-size:1.894cqw;line-height:1.6;margin:1.414cqw 0 0;color:var(--muted)}
 .compar-bottom{background:var(--green-soft);border-radius:1.515cqw;padding:1.515cqw 2.121cqw;margin-top:1.717cqw;color:var(--teal-dark);font-size:2.303cqw;font-weight:900}
 
 /* ---- スライド9 ---- */
@@ -282,8 +279,8 @@ body {
 /* ---- 元のHTMLでインラインに書かれていた指定 ---- */
 .footer-copy{font-weight:500}
 .page-total{font-size:1.111cqw;font-weight:700;color:var(--faint)}
-.cover-brand{position:absolute;top:5.556cqw;left:7.071cqw}
-.cover-brand-en{font-size:1.414cqw;color:var(--muted);font-weight:700;margin-left:1.01cqw}
+/* 表紙左上のロゴ（issue #73）。黒1色のロゴを、ほかのロゴと同じくティールで塗る */
+.cover-brand{--logo:url("images/logo_mamoppi_full.png");position:absolute;top:4.545cqw;left:7.071cqw;width:16.162cqw;aspect-ratio:1790 / 576;background:var(--teal);-webkit-mask:var(--logo) center / contain no-repeat;mask:var(--logo) center / contain no-repeat}
 .cover-draft{font-size:1.455cqw;color:var(--faint)}
 .quote-big{margin-top:2.424cqw}
 .quote-accent{color:var(--teal-dark)}
@@ -310,11 +307,12 @@ body {
 .quote-box{min-height:0;padding:2.828cqw 3.03cqw}
 .vision-grid{margin-top:1.01cqw}
 
-/* 5ページ：製品の絵を少し小さくして右のカードに幅を回し、アイコンと見出しを横に並べる */
+/* 5ページ：製品の絵を少し小さくして右のカードに幅を回し、アイコンと見出しを横に並べる。
+ * 中身はカードの縦の中央に置く（同じ段のカードより短いときに上に寄らないように。issue #75） */
 .product-layout{grid-template-columns:36.364cqw 1fr;gap:2.525cqw;margin-top:0.707cqw}
 .product-showcase{height:36.364cqw}
 .tag-device{left:7.374cqw;top:4.444cqw}
-.product-feature{min-height:0;padding:1.818cqw;display:grid;grid-template-columns:auto 1fr;column-gap:1.212cqw;align-items:center;align-content:start}
+.product-feature{min-height:0;padding:1.818cqw;display:grid;grid-template-columns:auto 1fr;column-gap:1.212cqw;align-items:center;align-content:center}
 .product-feature h3{margin:0}
 .product-feature p{grid-column:1 / -1;margin-top:1.01cqw}
 .product-caveat{margin-top:1.212cqw}
@@ -331,7 +329,6 @@ body {
 .comparison td{padding:0.808cqw 1.212cqw}
 .comparison .yes{font-size:2.424cqw}
 .comparison .no{font-size:2.222cqw}
-.compar-note{margin-top:1.01cqw}
 .compar-bottom{margin-top:1.212cqw;padding:1.212cqw 2.121cqw}
 
 /* 9ページ：右の枠は高さを中身に任せる（固定の高さだと下の一文がはみ出す） */
