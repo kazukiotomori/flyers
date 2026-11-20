@@ -105,11 +105,14 @@ body {
 .cover h1{font-size:7.071cqw;color:var(--heading);letter-spacing:-.04em;line-height:1.42;margin:2.525cqw 0 1.818cqw;font-weight:900}
 .cover h1 .highlight{color:var(--teal)}
 .cover-desc{font-size:2.525cqw;line-height:1.8;font-weight:650;color:var(--muted);margin:0 0 3.232cqw}
+/* 説明の3行目だけ少し小さく（issue #73） */
+.cover-desc-sub{font-size:2.121cqw}
 .cover-details{position:absolute;bottom:5.859cqw;left:7.071cqw;font-size:1.818cqw;font-weight:700;line-height:1.7;color:var(--muted);z-index:3}
 .cover .hero-illu{position:absolute;right:0.505cqw;top:9.091cqw;width:56.566cqw;height:61.111cqw;z-index:1}
 .cover .footer{display:none}
 /* issue #67 案B：文字を大きくした分、左の文字の幅を広げて少し上から始める */
-.cover .cover-left{width:62.626cqw;top:12.121cqw}
+/* 左上のロゴを大きくした分（issue #73）、文章のかたまりを下げる */
+.cover .cover-left{width:62.626cqw;top:15.657cqw}
 .cover .badge{font-size:1.717cqw}
 .cover .pill{font-size:2.02cqw;padding:1.01cqw 1.919cqw}
 
@@ -280,7 +283,7 @@ body {
 .footer-copy{font-weight:500}
 .page-total{font-size:1.111cqw;font-weight:700;color:var(--faint)}
 /* 表紙左上のロゴ（issue #73）。黒1色のロゴを、ほかのロゴと同じくティールで塗る */
-.cover-brand{--logo:url("images/logo_mamoppi_full.png");position:absolute;top:4.545cqw;left:7.071cqw;width:16.162cqw;aspect-ratio:1790 / 576;background:var(--teal);-webkit-mask:var(--logo) center / contain no-repeat;mask:var(--logo) center / contain no-repeat}
+.cover-brand{--logo:url("images/logo_mamoppi_full.png");position:absolute;top:3.535cqw;left:7.071cqw;width:32.323cqw;aspect-ratio:1790 / 576;background:var(--teal);-webkit-mask:var(--logo) center / contain no-repeat;mask:var(--logo) center / contain no-repeat}
 .cover-draft{font-size:1.455cqw;color:var(--faint)}
 .quote-big{margin-top:2.424cqw}
 .quote-accent{color:var(--teal-dark)}
