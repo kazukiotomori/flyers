@@ -311,13 +311,16 @@ body {
 .vision-grid{margin-top:1.01cqw}
 
 /* 5ページ：製品の絵を少し小さくして右のカードに幅を回し、アイコンと見出しを横に並べる。
- * 中身はカードの縦の中央に置く（同じ段のカードより短いときに上に寄らないように。issue #75） */
+ * 横に並ぶカードどうしで「見出しの段」「本文の段」の高さを共有し（subgrid）、
+ * 見出しが1行のカードも、本文の書き出しを隣のカードに揃える（issue #75） */
 .product-layout{grid-template-columns:36.364cqw 1fr;gap:2.525cqw;margin-top:0.707cqw}
 .product-showcase{height:36.364cqw}
 .tag-device{left:7.374cqw;top:4.444cqw}
-.product-feature{min-height:0;padding:1.818cqw;display:grid;grid-template-columns:auto 1fr;column-gap:1.212cqw;align-items:center;align-content:center}
+.product-features{row-gap:0}
+.product-feature{grid-row:span 2;min-height:0;padding:1.818cqw;display:grid;grid-template-columns:auto 1fr;grid-template-rows:subgrid;column-gap:1.212cqw;row-gap:1.01cqw;align-items:center}
+.product-feature:nth-child(n+3){margin-top:1.515cqw}
 .product-feature h3{margin:0}
-.product-feature p{grid-column:1 / -1;margin-top:1.01cqw}
+.product-feature p{grid-column:1 / -1;align-self:start;margin:0}
 .product-caveat{margin-top:1.212cqw}
 
 /* 7ページ：見出しは少し抑え、カードの高さは中身に任せる */
