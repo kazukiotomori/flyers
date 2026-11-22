@@ -284,7 +284,6 @@ body {
 .page-total{font-size:1.111cqw;font-weight:700;color:var(--faint)}
 /* 表紙のロゴ（issue #73）。帯の下に置く。黒1色のロゴを、ほかのロゴと同じくティールで塗る */
 .cover-brand{--logo:url("images/logo_mamoppi_full.png");margin-top:2.02cqw;width:27.273cqw;aspect-ratio:1790 / 576;background:var(--teal);-webkit-mask:var(--logo) center / contain no-repeat;mask:var(--logo) center / contain no-repeat}
-.cover-draft{font-size:1.455cqw;color:var(--faint)}
 .quote-big{margin-top:2.424cqw}
 .quote-accent{color:var(--teal-dark)}
 .v1-label{color:var(--teal-dark)}
